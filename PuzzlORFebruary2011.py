@@ -27,8 +27,4 @@ def main():
         
     
 
-#print(validArrangement[templist[0]])
-#print(templist)
-#print(validArrangement["Andrew"])
-
 main()
