@@ -1,11 +1,23 @@
 # PuzzlOR December 2014 Electrifying
 # Electrifying - 35.63M
 import random
+import math
 
-def generate_distance(substation, neighborhood):
-    temp0 = substation[0]
-    temp1 = substation[1]
-    temp2 = substation[2]
+def generate_distance(substation, neighborhood,yVal):
+    distanceCalc = 0
+    templist = []
+    substation0 = substation[0]
+    substation1 = substation[1]
+    substation2 = substation[2]
+    substation0position = generate_coordinate(substation0,yVal)
+    substation1position = generate_coordinate(substation1,yVal)
+    substation2position = generate_coordinate(substation2,yVal)
+    for area in neighborhood:
+        templist.extend([euclidean_distance(substation0position,generate_coordinate(area,yVal)),
+        euclidean_distance(substation1position,generate_coordinate(area,yVal)),
+        euclidean_distance(substation2position,generate_coordinate(area,yVal))])
+        distanceCalc += min(templist)
+    return distanceCalc
 
 def generate_random(alist):
     return random.randint(0,len(alist)-1)
@@ -19,14 +31,14 @@ def generate_position(alist,numOfPositions):
             templist.append(temp)
             count += 1
     return templist
-    
+
 
 def generate_coordinate(value,alist):
     tempList = []
     tempVal = value[0]
     tempNum = int(value[1])
     tempVal1 = int(alist.index(tempVal)) + 1
-    tempList.append([tempVal1,tempNum])
+    tempList.extend([tempVal1,tempNum])
     return tempList
 
 def generate_area(xVal,yVal):
@@ -49,7 +61,21 @@ def main():
                      "H3","H5","H7","H8","J4"]
     allList = generate_area(xVal,yVal)
     cost = 10**6
-  
     substations = generate_position(generate_area(xVal,yVal),3)
+    print(substations)
+    tempval = round(generate_distance(substations, neighborhoods,yVal),2)
+    print(tempval)
+    countval = 0
+    maxval = 50
+    costlist = []
+    while countval < maxval:
+        substations = generate_position(generate_area(xVal,yVal),3)
+        tempval = round(generate_distance(substations, neighborhoods,yVal),2)
+        if tempval not in costlist and tempval != 0.0:
+            costlist.append([tempval,substations])
+        countval +=1
+    costlist.sort()
+    print(costlist)
+
 
 main()
