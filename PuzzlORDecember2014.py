@@ -2,10 +2,18 @@
 # Electrifying - 35.63M
 import random
 import math
+import itertools
 
-def generate_distance(substation, neighborhood,yVal):
+def find_min(alist):
+    minval = min(alist)
+    val = alist.index(minval)
+    return val
+
+def generate_distance(substation,neighborhood,yVal):
     distanceCalc = 0
     templist = []
+    templist2 = []
+    
     substation0 = substation[0]
     substation1 = substation[1]
     substation2 = substation[2]
@@ -13,25 +21,14 @@ def generate_distance(substation, neighborhood,yVal):
     substation1position = generate_coordinate(substation1,yVal)
     substation2position = generate_coordinate(substation2,yVal)
     for area in neighborhood:
-        templist.extend([euclidean_distance(substation0position,generate_coordinate(area,yVal)),
+        templist = [euclidean_distance(substation0position,generate_coordinate(area,yVal)),
         euclidean_distance(substation1position,generate_coordinate(area,yVal)),
-        euclidean_distance(substation2position,generate_coordinate(area,yVal))])
+        euclidean_distance(substation2position,generate_coordinate(area,yVal))]
+        templist2.append(find_min(templist))
         distanceCalc += min(templist)
-    return distanceCalc
-
-def generate_random(alist):
-    return random.randint(0,len(alist)-1)
-
-def generate_position(alist,numOfPositions):
-    templist = []
-    count = 0
-    while count < numOfPositions:
-        temp = alist[generate_random(alist)]
-        if temp not in templist:
-            templist.append(temp)
-            count += 1
-    return templist
-
+    if len(list(set(templist2))) != 3:
+        distanceCalc = 10000
+    return round(distanceCalc,2), templist2
 
 def generate_coordinate(value,alist):
     tempList = []
@@ -60,22 +57,15 @@ def main():
                      "E8","F3","F5","G8","G9"
                      "H3","H5","H7","H8","J4"]
     allList = generate_area(xVal,yVal)
-    cost = 10**6
-    substations = generate_position(generate_area(xVal,yVal),3)
-    print(substations)
-    tempval = round(generate_distance(substations, neighborhoods,yVal),2)
-    print(tempval)
-    countval = 0
-    maxval = 50
-    costlist = []
-    while countval < maxval:
-        substations = generate_position(generate_area(xVal,yVal),3)
-        tempval = round(generate_distance(substations, neighborhoods,yVal),2)
-        if tempval not in costlist and tempval != 0.0:
-            costlist.append([tempval,substations])
-        countval +=1
-    costlist.sort()
-    print(costlist)
+    countlist = []
+##    substations = ['B10', 'C10', 'D10']
+##    print(generate_distance(substations, neighborhoods,yVal))
 
+    for values in itertools.combinations(allList,3):
+        substations = list(values)
+        tempval = generate_distance(substations, neighborhoods,yVal)
+        countlist.append(tempval)
+    countlist.sort()
+    print(countlist)
 
 main()
