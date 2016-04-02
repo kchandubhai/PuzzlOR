@@ -21,14 +21,17 @@ def generate_distance(substation,neighborhood,yVal):
     substation1position = generate_coordinate(substation1,yVal)
     substation2position = generate_coordinate(substation2,yVal)
     for area in neighborhood:
-        templist = [euclidean_distance(substation0position,generate_coordinate(area,yVal)),
-        euclidean_distance(substation1position,generate_coordinate(area,yVal)),
-        euclidean_distance(substation2position,generate_coordinate(area,yVal))]
+        areaCalc = generate_coordinate(area,yVal)
+        templist = [
+        euclidean_distance(substation0position,areaCalc),
+        euclidean_distance(substation1position,areaCalc),
+        euclidean_distance(substation2position,areaCalc)
+        ]
         templist2.append(find_min(templist))
         distanceCalc += min(templist)
-    if len(list(set(templist2))) != 3:
+    if len(set(templist2)) != 3:
         distanceCalc = 10000
-    return round(distanceCalc,2), templist2
+    return round(distanceCalc,2)
 
 def generate_coordinate(value,alist):
     tempList = []
@@ -56,16 +59,15 @@ def main():
                      "C5","C10","D9","E2","E6"
                      "E8","F3","F5","G8","G9"
                      "H3","H5","H7","H8","J4"]
+    
     allList = generate_area(xVal,yVal)
-    countlist = []
-##    substations = ['B10', 'C10', 'D10']
-##    print(generate_distance(substations, neighborhoods,yVal))
 
-    for values in itertools.combinations(allList,3):
-        substations = list(values)
-        tempval = generate_distance(substations, neighborhoods,yVal)
-        countlist.append(tempval)
-    countlist.sort()
-    print(countlist)
+    countlist = []
+    for substations in itertools.combinations(allList,3):
+         tempval = generate_distance(list(substations), neighborhoods,yVal)
+         countlist.append(tempval)
+    output = list(set(countlist))
+    output.sort()
+    print(output)
 
 main()
