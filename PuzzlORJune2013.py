@@ -15,7 +15,9 @@ def find_closest(endpoint,area,startPositionList):
     for value in area:
         tempDistanceList.append([value,euclidean_distance(endpoint,value[0])])
     tempDistanceList2 =  sorted(tempDistanceList,key=operator.itemgetter(1))
-    return tempDistanceList2[0][0]
+
+
+    #return tempDistanceList2[0][0]
 
 def main():
     area = [[[2,1],[5,2]],
@@ -25,21 +27,37 @@ def main():
     [[4,8],[1,10]],[[3,10],[10,7]],
     [[8,10],[9,8]]]
 
-    #print(find_closest([5,2],area,[[5,4],[4,8]]))
-
+    startPosition = [[2,1],[5,2]]
     calcList = []
-    for value in area:
-        startPosition = value
-        countval = 0
-        maxcount = 10
-        startPositionList = []
-        distance_calc = 0
-        while countval < maxcount:
-            startPositionList.append(startPosition)
-            distance_calc += euclidean_distance(startPosition[0],startPosition[1])
-            nextPosition = find_closest(startPosition[1],area,startPositionList)
-            startPosition = nextPosition
-            countval += 1
-        calcList.append(distance_calc)
+    countval = 0
+    maxcount = 10
+    startPositionList = []
+    distance_calc = 0
+    while countval < maxcount:
+        startPositionList.append(startPosition)
+        distance_calc += euclidean_distance(startPosition[0],startPosition[1])
+        nextPosition = find_closest(startPosition[1],area,startPositionList)
+        startPosition = nextPosition
+        countval += 1
+    calcList.append(distance_calc)
+    print(startPositionList)
     calcList.sort()
     print(calcList)
+
+##    calcList = []
+##    for value in area:
+##        startPosition = value
+##        countval = 0
+##        maxcount = 10
+##        startPositionList = []
+##        distance_calc = 0
+##        while countval < maxcount:
+##            startPositionList.append(startPosition)
+##            distance_calc += euclidean_distance(startPosition[0],startPosition[1])
+##            nextPosition = find_closest(startPosition[1],area,startPositionList)
+##            startPosition = nextPosition
+##            countval += 1
+##        calcList.append(distance_calc)
+##        #print(startPositionList)
+##    calcList.sort()
+##    print(calcList)
