@@ -13,7 +13,6 @@ def generate_distance(substation,neighborhood,yVal):
     distanceCalc = 0
     templist = []
     templist2 = []
-    
     substation0 = substation[0]
     substation1 = substation[1]
     substation2 = substation[2]
@@ -67,6 +66,6 @@ def main():
          countlist.append(tempval)
     output = list(set(countlist))
     output.sort()
-    print(output)
+    print(output[0])
 
 main()
