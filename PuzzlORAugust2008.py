@@ -1,6 +1,25 @@
 # PuzzlOR August 2008 Markov Prison
 
 import random
+def generate_guard1():
+	val = round(random.random(),1)
+	if val < 0.2:
+		return 0
+	elif val < 0.6:
+		return 1
+	elif val < 0.8:
+		return 2
+	return 3
+
+def generate_guard2():
+	val = round(random.random(),1)
+	if val < 0.4:
+		return 0
+	elif val < 0.5:
+		return 1
+	elif val < 0.7:
+		return 2
+	return 3
 
 def generate_random(alist):
 	randomval = random.randint(0,len(alist)-1)
@@ -34,15 +53,20 @@ def main():
 	prisonerPosition = []
 	caught = False
 	prisonerStartPosition = 1
+	guard1Position = 16
+	guard2Position = 16
+
 	while not caught:
 		nextPrisonerPosition = prisoner_move(prisonerStartPosition)
 		if nextPrisonerPosition == 16:
 			prisonerPosition.append(nextPrisonerPosition)
+			print("Escaped")
 			break
-		if nextPrisonerPosition not in prisonerPosition:
+		elif nextPrisonerPosition not in prisonerPosition and nextPrisonerPosition != 0:
 			prisonerPosition.append(nextPrisonerPosition)
-		prisonerStartPosition = prisoner_move(nextPrisonerPosition)
+			prisonerStartPosition = prisoner_move(nextPrisonerPosition)
+	print(prisonerPosition)	
 
 
-
-main
+#main
+print(generate_guard1())
