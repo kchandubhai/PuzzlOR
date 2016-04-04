@@ -9,35 +9,35 @@ def find_min(alist):
     val = alist.index(minval)
     return val
 
-def testgenerate_distance(substation,neighborhood,yVal):
-    distanceCalc = 0
-    templist = []
-    templist2 = []
+# def testgenerate_distance(substation,neighborhood,yVal):
+#     distanceCalc = 0
+#     templist = []
+#     templist2 = []
     
-    substation0 = substation[0]
-    # substation1 = substation[1]
-    # substation2 = substation[2]
-    substation0position = generate_coordinate(substation0,yVal)
-    # substation1position = generate_coordinate(substation1,yVal)
-    # substation2position = generate_coordinate(substation2,yVal)
-    #print(substation0position)
-    for area in neighborhood:
-        #print(area)
-        areaCalc = generate_coordinate(area,yVal)
-        templist = [euclidean_distance(areaCalc,substation0position)]
-        print(templist,area)
-        # ,
-        # euclidean_distance(areaCalc,substation1position),
-        # euclidean_distance(areaCalc,substation2position)
-        # print("")
-        # templist2 = [
-        # euclidean_distance(substation0position,areaCalc)]
-        # print(templist2)
-    #     templist2.append(find_min(templist))
-    #     distanceCalc += min(templist)
-    # if len(set(templist2)) != 3:
-    #     distanceCalc = 10000
-    # return round(distanceCalc,2)
+#     substation0 = substation[0]
+#     # substation1 = substation[1]
+#     # substation2 = substation[2]
+#     substation0position = generate_coordinate(substation0,yVal)
+#     # substation1position = generate_coordinate(substation1,yVal)
+#     # substation2position = generate_coordinate(substation2,yVal)
+#     #print(substation0position)
+#     for area in neighborhood:
+#         #print(area)
+#         areaCalc = generate_coordinate(area,yVal)
+#         templist = [euclidean_distance(areaCalc,substation0position)]
+#         print(templist,area)
+#         # ,
+#         # euclidean_distance(areaCalc,substation1position),
+#         # euclidean_distance(areaCalc,substation2position)
+#         # print("")
+#         # templist2 = [
+#         # euclidean_distance(substation0position,areaCalc)]
+#         # print(templist2)
+#     #     templist2.append(find_min(templist))
+#     #     distanceCalc += min(templist)
+#     # if len(set(templist2)) != 3:
+#     #     distanceCalc = 10000
+#     # return round(distanceCalc,2)
 
 def generate_distance(substation,neighborhood,yVal):
     distanceCalc = 0
@@ -67,7 +67,6 @@ def generate_coordinate(value,alist):
     tempList = []
     tempVal = value[0]
     tempNum = int(value[1])
-    #tempVal1 = int(alist.index(tempVal))
     tempVal1 = int(alist.index(tempVal)) + 1
     tempList.extend([tempVal1,tempNum])
     return tempList
@@ -81,7 +80,7 @@ def generate_area(xVal,yVal):
 
 def euclidean_distance(a,b):
     c = [math.pow(a[i] - b[i],2) for i in range(len(a))]
-    return round(math.sqrt(sum(c)),2)
+    return math.sqrt(sum(c))
 
 def main():
     xVal = [1,2,3,4,5,6,7,8,9,10]
