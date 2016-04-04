@@ -1,25 +1,31 @@
 # PuzzlOR August 2008 Markov Prison
 
 import random
-def generate_guard1():
+def generate_guard1(position,prison):
 	val = round(random.random(),1)
 	if val < 0.2:
-		return 0
+		tempval =  0
 	elif val < 0.6:
-		return 1
+		tempval = 1
 	elif val < 0.8:
-		return 2
-	return 3
+		tempval = 2
+	tempval = 3
+	nextMoves = prison[position]
+	nextMove = nextMoves[tempval]
+	return nextMove
 
-def generate_guard2():
+def generate_guard2(position,prison):
 	val = round(random.random(),1)
 	if val < 0.4:
-		return 0
+		tempval = 0
 	elif val < 0.5:
-		return 1
+		tempval = 1
 	elif val < 0.7:
-		return 2
-	return 3
+		tempval = 2
+	tempval = 3
+	nextMoves = prison[position]
+	nextMove = nextMoves[tempval]
+	return nextMove
 
 def generate_random(alist):
 	randomval = random.randint(0,len(alist)-1)
@@ -50,23 +56,33 @@ def main():
 	16:[12,0,0,15],
 	}
 
-	prisonerPosition = []
+	prisonerPositionlist = []
 	caught = False
-	prisonerStartPosition = 1
+	prisonerPosition = 1
 	guard1Position = 16
 	guard2Position = 16
+	countval = 0
 
 	while not caught:
-		nextPrisonerPosition = prisoner_move(prisonerStartPosition)
-		if nextPrisonerPosition == 16:
-			prisonerPosition.append(nextPrisonerPosition)
-			print("Escaped")
+		prisonerPosition = prisoner_move(prisonerPosition)
+		guard1Position = generate_guard1(guard1Position,prison)
+		guard2Position = generate_guard2(guard2Position,prison)
+		#check if prisoner has been caught
+		if prisonerPosition == guard1Position or prisonerPosition == guard2Position:
+			caught = True
 			break
-		elif nextPrisonerPosition not in prisonerPosition and nextPrisonerPosition != 0:
-			prisonerPosition.append(nextPrisonerPosition)
-			prisonerStartPosition = prisoner_move(nextPrisonerPosition)
-	print(prisonerPosition)	
+		#check if prisoner is at position 16
+		elif prisonerPosition == 16:
+	 		prisonerPositionlist.append(prisonerPosition)
+	 		print("Escaped")
+	 		break
+	 	else:
+
+
+	# 	elif nextPrisonerPosition not in prisonerPosition and nextPrisonerPosition != 0:
+	# 		prisonerPosition.append(nextPrisonerPosition)
+	# 		prisonerStartPosition = prisoner_move(nextPrisonerPosition)
+	# print(prisonerPosition)	
 
 
 #main
-print(generate_guard1())
