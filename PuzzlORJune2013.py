@@ -12,8 +12,8 @@ def checkVal(alist,blist):
     return templist
 
 def euclidean_distance(a,b):
-    c = [math.pow(a[i] - b[i],2) for i in range(len(a))]
-    return math.sqrt(sum(c))
+    c = [math.pow(a[i] - b[i],2) for i in range(len(b))]
+    return round(math.sqrt(sum(c)),2)
 
 def find_closest(endpoint,area,startPositionList):
     tempDistanceList = []
@@ -27,18 +27,16 @@ def find_closest(endpoint,area,startPositionList):
     return tempval2[0]
 
 def main():
-    area = [[[2,1],[5,2]],
-	[[7,1],[9,4]],[[9,2],[6,6]],
-	[[5,4],[2,3]],[[4,5],[7,9]],
-    [[8,5],[2,4]],[[3,7],[7,7]],
-    [[4,8],[1,10]],[[3,10],[10,7]],
-    [[8,10],[9,8]]]
-
+    area = [[[2,1],[5,2]],[[7,1],[9,4]],
+    	   [[9,2],[6,6]],[[5,4],[2,3]],
+    	   [[4,5],[7,9]],[[8,5],[2,4]],
+    	   [[3,7],[7,7]],[[4,8],[1,10]],
+    	   [[3,10],[10,7]],[[8,10],[9,8]]]
     calcList = []
     countval = 0
     startPositionList = []
     distance_calc = 0
-    
+    temp_distance_calc = 0
     calcList = []
     for value in area:
        startPosition = value
@@ -46,16 +44,17 @@ def main():
        startPositionList = []
        distance_calc = 0
        while countval < len(area)-1:
-           startPositionList.append(startPosition)
            distance_calc += euclidean_distance(startPosition[0],startPosition[1])
+           startPositionList.append(startPosition)
            nextPosition = find_closest(startPosition[1],area,startPositionList)
            distance_calc += euclidean_distance(startPosition[1],nextPosition[0])
            startPosition = nextPosition
            countval += 1
-       calcList.append(distance_calc)
-       print(startPositionList)
-       print(distance_calc)
+       temp = checkVal(area,startPositionList)
+       temp_distance_calc = euclidean_distance(startPositionList[len(startPositionList)-1][1],temp[0][0]) + euclidean_distance(temp[0][0],temp[0][1])
+       calcList.append(round(distance_calc + temp_distance_calc,2))
     calcList.sort()
     print(calcList)
+
 
 main()
