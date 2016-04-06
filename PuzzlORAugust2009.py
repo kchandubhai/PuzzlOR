@@ -32,12 +32,8 @@ def main():
     "four":[[6,2],[8,2]]
     }
 
-
     homeWorkData = [[[4,12],[12,8]],[[2,11],[10,12]],
     [[3,8],[10,5]],[[2,7],[12,2]],[[2,4],[10,2]]]
-
-    # chosenBridges = ["one","two"]
-    # print(calculate_distance(homeWorkData,bridgeData,chosenBridges))
 
     distanceinfo = []
     for value in itertools.combinations(bridgeData,2):
