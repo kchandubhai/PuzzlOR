@@ -1,15 +1,22 @@
 # PuzzlOR August 2009 Bridges
 
-# goal: Which two bridges should be built in order to minimize the total commuting distance of all residents?
 import itertools
 import random
 import math
 import operator
 
 def calculate_distance(homeWorkData,bridgeData,chosenBridges):
+    distance = 0
     firstBridge = bridgeData[chosenBridges[0]]
     secondBridge = bridgeData[chosenBridges[1]]
-    return (firstBridge,secondBridge)
+    for value in homeWorkData:
+        tempdata = [manhattan_distance(value[0],firstBridge[0]) +
+        manhattan_distance(firstBridge[0],firstBridge[1]) +
+        manhattan_distance(firstBridge[1],value[1]),manhattan_distance(value[0],secondBridge[0]) +
+        manhattan_distance(secondBridge[0],secondBridge[1]) +
+        manhattan_distance(secondBridge[1],value[1])]
+        distance += min(tempdata)
+    return distance
 
 def manhattan_distance(a,b):
     c = [abs(a[i] - b[i]) for i in range(len(a))]
@@ -29,13 +36,16 @@ def main():
     homeWorkData = [[[4,12],[12,8]],[[2,11],[10,12]],
     [[3,8],[10,5]],[[2,7],[12,2]],[[2,4],[10,2]]]
 
-    chosenBridges = ["one","two"]
-    print(calculate_distance(homeWorkData,bridgeData,chosenBridges))
+    # chosenBridges = ["one","two"]
+    # print(calculate_distance(homeWorkData,bridgeData,chosenBridges))
 
-##    for value in itertools.combinations(bridgeData,2):
-##        print(list(value))
-##    print(homeWorkData[4])
-##    print(manhattan_distance(homeWorkData[4][0],homeWorkData[4][1]))
+    distanceinfo = []
+    for value in itertools.combinations(bridgeData,2):
+        chosenBridges = list(value)
+        distanceinfo.append([chosenBridges,calculate_distance(homeWorkData,bridgeData,chosenBridges)])
+    sorted_distance = sorted(distanceinfo, key=operator.itemgetter(1))
+    print(sorted_distance[0])
+
 
 
 main()
