@@ -7,7 +7,9 @@ import math
 import operator
 
 def calculate_distance(homeWorkData,bridgeData,chosenBridges):
-    temp = ""
+    firstBridge = bridgeData[chosenBridges[0]]
+    secondBridge = bridgeData[chosenBridges[1]]
+    return (firstBridge,secondBridge)
 
 def manhattan_distance(a,b):
     c = [abs(a[i] - b[i]) for i in range(len(a))]
@@ -26,6 +28,9 @@ def main():
 
     homeWorkData = [[[4,12],[12,8]],[[2,11],[10,12]],
     [[3,8],[10,5]],[[2,7],[12,2]],[[2,4],[10,2]]]
+
+    chosenBridges = ["one","two"]
+    print(calculate_distance(homeWorkData,bridgeData,chosenBridges))
 
 ##    for value in itertools.combinations(bridgeData,2):
 ##        print(list(value))
