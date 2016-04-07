@@ -22,7 +22,12 @@ def euclidean_distance(a,b):
     c = [math.pow(a[i] - b[i],2) for i in range(len(a))]
     return round(math.sqrt(sum(c)),2)
 
-def assign_sub_battleship(alist,blist):
+def calc_min_distance(alist,checklist):
+
+def calc_distance(alist,blist):
+    for val in blist:
+        
+
 
 
 def main():
