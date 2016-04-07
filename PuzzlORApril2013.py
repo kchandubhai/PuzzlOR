@@ -22,10 +22,15 @@ def euclidean_distance(a,b):
     c = [math.pow(a[i] - b[i],2) for i in range(len(a))]
     return round(math.sqrt(sum(c)),2)
 
-def calc_min_distance(alist,checklist):
+def calc_min_distance(value,blist):
+    for val in blist:
+        temp.append([euclidean_distance(value,val),val,val])
+    sorted_temp = sorted(temp,key=operator.itemgetter(0))
+
 
 def calc_distance(alist,blist):
     for val in blist:
+        calc_min_distance(val,blist)
         
 
 
@@ -39,6 +44,7 @@ def main():
 
     subCoor = create_coordinate(subs,xval)
     battleshipCoor = create_coordinate(battleships,xval)
+    calc_distance(subCoor,battleshipCoor)
 
 
 
