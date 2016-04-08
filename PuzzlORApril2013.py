@@ -1,6 +1,6 @@
 # PuzzlOR April 2013 Subs and Battleship
 # Subs vs. Battleships - 30.78
-
+# reference http://iaindunning.com/blog/subs-battleships.html
 import itertools
 import random
 import math
