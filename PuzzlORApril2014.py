@@ -4,9 +4,11 @@ import random
 from collections import Counter
 import operator
 
+# choose a random index from a given list
 def generate_random(alist):
     return random.randint(0,len(alist)-1)
 
+# generate a country move based on current position
 def move(currentPosition,allPosition):
     tempval = allPosition[currentPosition]
     return tempval[generate_random(tempval)]
