@@ -4,15 +4,15 @@ import random
 from collections import Counter
 import operator
 
-def generate_fighter(alist):
+def generateFighter(alist):
     return random.randint(0,len(alist)-1)
 
 def chooseFighter(alist):
     templist = []
-    attacker = alist[generate_fighter(alist)]
-    defender = alist[generate_fighter(alist)]
+    attacker = alist[generateFighter(alist)]
+    defender = alist[generateFighter(alist)]
     while attacker == defender:
-        defender = alist[generate_fighter(alist)]
+        defender = alist[generateFighter(alist)]
     templist.extend([attacker,defender])
     return templist
 
