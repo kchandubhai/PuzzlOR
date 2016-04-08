@@ -30,16 +30,10 @@ def main():
     "patient20":[[1,0,1,0],"Allergies"]
     }
 
-    symptom = []
     patient21 = [0,1,1,1]
-    for patient in patientinfo:
-        temp = patientinfo[patient][0]
-        tempval = patientinfo[patient][1]
-        tempdistance = euclidean_distance(temp,patient21)
-        symptom.append([tempval,tempdistance])
-    ##print(symptom)
+    patient21 = [0,1,1,1]
+    symptom = [[patientinfo[patient][1],euclidean_distance(patientinfo[patient][0],patient21)]for patient in patientinfo]
     print(sorted(symptom, key=itemgetter(1)))
-
 
 main()
 
