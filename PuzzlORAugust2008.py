@@ -12,6 +12,8 @@ def generate_guard1(position,prison):
 	tempval = 3
 	nextMoves = prison[position]
 	nextMove = nextMoves[tempval]
+	if nextMove == 0:
+		nextMove = position
 	return nextMove
 
 def generate_guard2(position,prison):
@@ -25,6 +27,8 @@ def generate_guard2(position,prison):
 	tempval = 3
 	nextMoves = prison[position]
 	nextMove = nextMoves[tempval]
+	if nextMove == 0:
+		nextMove = position
 	return nextMove
 
 def generate_random(alist):
@@ -34,6 +38,8 @@ def generate_random(alist):
 def prisoner_move(position,prison):
 	nextMoves = prison[position]
 	newMove = nextMoves[generate_random(nextMoves)]
+	if newMove == 0:
+		newMove = position
 	return newMove
 
 def main():
@@ -64,19 +70,23 @@ def main():
 	countval = 0
 
 	while not caught:
-		prisonerPosition = prisoner_move(prisonerPosition)
-		guard1Position = generate_guard1(guard1Position,prison)
-		guard2Position = generate_guard2(guard2Position,prison)
-		#check if prisoner has been caught
-		if prisonerPosition == guard1Position or prisonerPosition == guard2Position:
-			caught = True
-			break
-		#check if prisoner is at position 16
-		elif prisonerPosition == 16:
-	 		prisonerPositionlist.append(prisonerPosition)
-	 		print("Escaped")
-	 		break
-	 	else:
+		# check prisoner and guards position
+		# check if prisoner is at position 16
+		# move guards
+		# move prisoner
+	# 	prisonerPosition = prisoner_move(prisonerPosition)
+	# 	guard1Position = generate_guard1(guard1Position,prison)
+	# 	guard2Position = generate_guard2(guard2Position,prison)
+	# 	#check if prisoner has been caught
+	# 	if prisonerPosition == guard1Position or prisonerPosition == guard2Position:
+	# 		caught = True
+	# 		break
+	# 	#check if prisoner is at position 16
+	# 	elif prisonerPosition == 16:
+	#  		prisonerPositionlist.append(prisonerPosition)
+	#  		print("Escaped")
+	#  		break
+	#  	else:
 
 
 	# 	elif nextPrisonerPosition not in prisonerPosition and nextPrisonerPosition != 0:
