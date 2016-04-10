@@ -1,14 +1,10 @@
 # PuzzlOR April 2013 Subs and Battleship
 # Subs vs. Battleships - 30.78
-# reference http://iaindunning.com/blog/subs-battleships.html
+
 import itertools
 import random
 import math
 import operator
-
-def create_coordinate(alist,xval):
-    coor = [generate_coordinate(value,xval) for value in alist]
-    return coor
 
 def generate_coordinate(value,alist):
     tempList = []
@@ -18,16 +14,13 @@ def generate_coordinate(value,alist):
     tempList.append([tempVal1,tempNum])
     return tempList
 
+
 def euclidean_distance(a,b):
     c = [math.pow(a[i] - b[i],2) for i in range(len(a))]
     return round(math.sqrt(sum(c)),2)
 
-def calc_min_distance(value,blist):
-    temp = [euclidean_distance(value,val),val,val] for val in blist]
-    sorted_temp = sorted(temp,key=operator.itemgetter(0))
+def update_battleship(alist):
 
-
-def calc_distance(alist,blist):
 
 def main():
     xVal = ["A","B","C","D","E","F","G","H","I","J"]
@@ -36,11 +29,15 @@ def main():
     battleships = ["B1","C4","D9","F1","F2","F3","F5","F8",
                    "G5","G6","G8","H7","J1","J4","J10"]
 
-    subCoor = create_coordinate(subs,xval)
-    battleshipCoor = create_coordinate(battleships,xval)
-    calc_distance(subCoor,battleshipCoor)
+    assignedSub = []
+    distance_calc = 0
+    tempBattleShips = battleships
+    for sub in subs:
+        tempBattleShips = update_battleship(tempBattleShips,assignedSub)
+        temp = assignSub(sub,tempBattleShips,xVal)
+        assignSub.append(temp[1])
+        distance_calc += temp[0]
+    return distance_calc
 
-
-
-
+   
 main()
