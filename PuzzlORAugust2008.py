@@ -96,3 +96,14 @@ def main():
 
 
 #main
+
+# Guard #1:
+# 20% of the time he moves North
+# 40% of the time he moves South
+# 20% of the time he moves West
+# 20% of the time he moves East
+# Guard #2:
+# 40% of the time she moves North
+# 10% of the time she moves South
+# 20% of the time she moves West
+# 30% of the time she moves East
