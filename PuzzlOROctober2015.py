@@ -41,3 +41,4 @@ configurationData = {
 allConfiguration = ["AE","BE","CE","AT","BT","CT","ATr","BTr","CTr","AB","BB","CB"]
 for configuration in itertools.combinations(allConfiguration,4):
     config = list(configuration)
+    
