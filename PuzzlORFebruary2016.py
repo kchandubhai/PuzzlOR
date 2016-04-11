@@ -14,7 +14,7 @@ def check_availablity(parts,toy):
         return True
     output = []
     for i in range(len(parts)):
-        if parts[i] - toy[i] < 1:
+        if parts[i] - toy[i] < toy[i]:
             output.append(parts[i] - toy[i])
     if len(output) > 1:
         return True
@@ -33,12 +33,8 @@ while not checkAvailable:
     if check_availablity(partAvailable,toy[1]):
         checkAvailable = True
     else:
-        partsAvailable = update_part(partAvailable,toy[1])
+        partAvailable = update_part(partAvailable,toy[1])
         print(partAvailable)
         profit += toy[2]
         print(profit)
 print(profit)
-
-
-
-
