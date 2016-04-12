@@ -9,32 +9,31 @@ def generate_random(alist):
 def update_part(parts,toy):
     return [parts[i] - toy[i] for i in range(len(parts))]
 
-def check_availablity(parts,toy):
-    if len(parts) < 1:
-        return True
+def check_valid(parts,toy):
     output = []
     for i in range(len(parts)):
-        if parts[i] - toy[i] < toy[i]:
-            output.append(parts[i] - toy[i])
-    if len(output) > 1:
+        if parts[i] < toy[i]:
+            output.append(i)
+    if len(output) > 0:
         return True
     return False
 
 maxProfit = []
-profit = 0
-partAvailable = [25,29,30]
-toyBuilder = [['airplane',[3,2,1],7],['helicopter',[2,4,1],8],['car',[1,2,4],5]]
-
-
-checkAvailable = False
-while not checkAvailable:
-    toy = toyBuilder[generate_random(toyBuilder)]
-    print(toy)
-    if check_availablity(partAvailable,toy[1]):
-        checkAvailable = True
-    else:
+countval = 0
+maxcount = 10000
+while countval < maxcount:
+    profit = 0
+    partAvailable = [25,29,30]
+    toyBuilder = [['airplane',[3,2,1],7],['helicopter',[2,4,1],8],['car',[1,2,4],5]]
+    checkAvailable = False
+    while not checkAvailable:
+        toy = toyBuilder[generate_random(toyBuilder)]
+        if check_valid(partAvailable,toy[1]):
+            checkAvailable = True
+            break
         partAvailable = update_part(partAvailable,toy[1])
-        print(partAvailable)
         profit += toy[2]
-        print(profit)
-print(profit)
+    maxProfit.append(profit)
+    countval += 1
+maxProfit.sort()
+print(max(maxProfit))
