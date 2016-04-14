@@ -1,5 +1,5 @@
 # PuzzlOR April 2012 McEverywhere
-
+# 3
 
 def generate_coordinate(value,alist):
     tempList = []
