@@ -1,4 +1,5 @@
 # PuzzlOR August 2008 Markov Prison
+# Markov’s Prison - 1,5,6,10,11,12,16, 0.4712  
 
 import random
 def generate_guard1(position,prison):
