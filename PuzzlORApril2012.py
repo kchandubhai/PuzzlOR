@@ -13,9 +13,8 @@ def generate_coordinate(value,alist):
     return tempList
 
 def generate_area(xVal,yVal):
-    templist = [str(x) + str(y) for x in xVal for y in yVal]
-    return templist
-
+    return [str(x) + str(y) for x in xVal for y in yVal]
+    
 def euclidean_distance(a,b):
     c = [math.pow(a[i] - b[i],2) for i in range(len(a))]
     return round(math.sqrt(sum(c)),2)
@@ -25,13 +24,19 @@ def calc_distance(position,homeinfo,xdata):
         area =  [euclidean_distance(generate_coordinate(i,xdata), \
         generate_coordinate(position[0],xdata)) for  i in homeinfo]
     else:
-        value = ""
+        outputData = []
+        for i in position:
+            tempOutput = [euclidean_distance(generate_coordinate(i,xdata),generate_coordinate(home,xdata)) \
+            for home in homeinfo]
+            outputData.append(tempOutput)
+        print(outputData)
 
-    outputList = [i for i in area if i <= 4]
-    if len(outputList) == len(homeinfo):
-        return True
-    return False
 
+    #outputList = [i for i in area if i <= 4]
+
+    #if len(outputList) == len(homeinfo):
+    #    return position
+    #return None
 
 
 
@@ -42,14 +47,15 @@ def main():
     "C8","C9","D2","E1","F2","F5","F6","G5","G9",
     "H3","H5","I5","I9","J7"]
 
-   
-    
     outputData = []
     area = generate_area(xVal,yVal)
-    for val in itertools.combinations(area,1):
-        position = list(val)
-        outputData.append(calc_distance(position,homeLocation,xVal))
-    print(outputData)
+    position = ['J4', 'J10']
+    outputData.append(calc_distance(position,homeLocation,xVal))
+
+    #for val in itertools.combinations(area,2):
+    #    position = list(val)
+    #    outputData.append(calc_distance(position,homeLocation,xVal))
+    #print(outputData)
     #print(min(outputData))
 
 
