@@ -1,6 +1,6 @@
 ## puzzlOR October 2009
 ## Connected and infected
-
+# 21
 def main():
     world = {
     "blue":["blue","violet","red"],
