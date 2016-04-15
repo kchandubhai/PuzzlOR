@@ -1,8 +1,8 @@
 # PuzzlOR April 2012 McEverywhere
-# 3
 
 import math
 import itertools
+import sys
 
 def generate_coordinate(value,alist):
     tempList = []
@@ -14,31 +14,44 @@ def generate_coordinate(value,alist):
 
 def generate_area(xVal,yVal):
     return [str(x) + str(y) for x in xVal for y in yVal]
-    
+
 def euclidean_distance(a,b):
     c = [math.pow(a[i] - b[i],2) for i in range(len(a))]
     return round(math.sqrt(sum(c)),2)
 
+def calc_min(alist,blist):
+    if len(alist) < 1:
+        output = blist
+    elif len(blist) < 1:
+        output = alist
+    else:
+        output = [min(alist[i],blist[i]) for i in range(len(blist))]
+    return output
+
+def find_min(alist):
+    countval = 0
+    maxcount = len(alist)
+    tempOutput = []
+    while countval < maxcount:
+        tempOutput = calc_min(tempOutput,alist[countval])
+        countval += 1
+    return tempOutput
+
 def calc_distance(position,homeinfo,xdata):
     if len(position) < 2:
-        area =  [euclidean_distance(generate_coordinate(i,xdata), \
+        output =  [euclidean_distance(generate_coordinate(i,xdata), \
         generate_coordinate(position[0],xdata)) for  i in homeinfo]
     else:
         outputData = []
         for i in position:
-            tempOutput = [euclidean_distance(generate_coordinate(i,xdata),generate_coordinate(home,xdata)) \
+            area = [euclidean_distance(generate_coordinate(i,xdata),generate_coordinate(home,xdata)) \
             for home in homeinfo]
-            outputData.append(tempOutput)
-        print(outputData)
-
-
-    #outputList = [i for i in area if i <= 4]
-
-    #if len(outputList) == len(homeinfo):
-    #    return position
-    #return None
-
-
+            outputData.append(area)
+        output = find_min(outputData)
+    outputList = [i for i in output if i <= 4]
+    if len(outputList) == len(homeinfo):
+        return position
+    return None
 
 def main():
     xVal = ['A',"B","C","D","E","F","G","H","I","J"]
@@ -49,15 +62,16 @@ def main():
 
     outputData = []
     area = generate_area(xVal,yVal)
-    position = ['J4', 'J10']
-    outputData.append(calc_distance(position,homeLocation,xVal))
+    storeNo = [1,2,3,4,5]
 
-    #for val in itertools.combinations(area,2):
-    #    position = list(val)
-    #    outputData.append(calc_distance(position,homeLocation,xVal))
-    #print(outputData)
-    #print(min(outputData))
-
-
+    for store in storeNo:
+        for val in itertools.combinations(area,store):
+            position = list(val)
+            output = calc_distance(position,homeLocation,xVal)
+            if output != None:
+                outputData.append(output)
+        if len(outputData) > 1:
+            print(store)
+            sys.exit()
 
 main()
