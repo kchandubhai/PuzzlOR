@@ -44,6 +44,7 @@ def calc_distance(position,homeinfo,xdata):
     else:
         outputData = []
         for i in position:
+<<<<<<< Updated upstream
             area = [euclidean_distance(generate_coordinate(i,xdata),generate_coordinate(home,xdata)) \
             for home in homeinfo]
             outputData.append(area)
@@ -52,6 +53,38 @@ def calc_distance(position,homeinfo,xdata):
     if len(outputList) == len(homeinfo):
         return position
     return None
+=======
+            tempOutput = [euclidean_distance(generate_coordinate(i,xdata),
+                                             generate_coordinate(home,xdata)) \
+            for home in homeinfo]
+            outputData.append(tempOutput)
+        
+        return compare_list(outputData)
+        ##print(outputData)
+
+
+    #outputList = [i for i in area if i <= 4]
+
+    #if len(outputList) == len(homeinfo):
+    #    return position
+    #return None
+
+
+>>>>>>> Stashed changes
+
+def calc_min(alist,blist):
+    output = [min(alist[i],blist[i]) for i in range(len(blist))]
+    return output
+    
+def compare_list(alist):
+    countval = 0
+    tempList = []
+    while countval < len(alist)-1:
+        tempList = calc_min(tempList,alist[countval])
+    return tempList
+    
+    
+
 
 def main():
     xVal = ['A',"B","C","D","E","F","G","H","I","J"]
