@@ -1,4 +1,4 @@
-#goal find the position that a user would land on the most
+# PuzzlOR December 2010 Minipoly
 import random
 import operator
 
@@ -44,7 +44,6 @@ while (rollcount < maxvalue):
     else:
         outcome[createdvalue] = 1
     rollcount+=1
-
 
 sorted_x = sorted(outcome.items(), key=operator.itemgetter(1))
 print(sorted_x[len(sorted_x)-1][1]/maxvalue)
