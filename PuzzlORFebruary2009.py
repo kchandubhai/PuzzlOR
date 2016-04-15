@@ -1,4 +1,5 @@
-#PuzzlOR February 2009 Supply & Demand
+# PuzzlOR February 2009 Supply & Demand
+# $74,465 (or $90,000
 
 import sys
 import math
@@ -33,6 +34,9 @@ def main():
     "B2":-2000,"C4":-500,"E1":-1500,"E5":-500
     }
 
+    possibileArea = [i for i in area if i not in factories and i not in towns]
+    possibleAreaCapacity = 1000
 
-
-main()
+    for value in possibileArea:
+        factoriesData = factories
+        factoriesData.append(value)
