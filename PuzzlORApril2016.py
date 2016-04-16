@@ -2,13 +2,16 @@
 
 import itertools
 import sys
+import math
 
-def get_tower_surrounding(positionData,positionInfo):
+def get_all_surrounding(positionData,positionInfo, neighborhood):
     output = []
     for i in positionData:
         output.extend(get_surrouding_position(i,positionInfo))
-    return list(set(output))
-
+    tempOutput = list(set(output))
+    finalOutput = [value for value in tempOutput if value in neighborhood]
+    return finalOutput
+        
 def generate_area(xVal,yVal):
     return [str(x) + str(y) for x in xVal for y in yVal]
 
@@ -55,10 +58,20 @@ def main():
     "I7","I8","J1","J2","J4","J8"]
     
     towerData = range(2,10)
-    checkData = 0.7 * len(neighborhoods)
-    print(checkData)
+    checkData = math.ceil(0.7 * len(neighborhoods))
+    
+#    positionData = ["A2","J1"]
+#    print(checkData)
+#    print(get_all_surrounding(positionData,positionInfo))
+#    print(len(get_all_surrounding(positionData,positionInfo)))
 #    for value in itertools.combinations(area,2):
 #        positionData = list(value):
+    for tower in towerData:
+        for areaInfo in itertools.combination(area,tower):
+            positionData = list(areaInfo)
+            if len(get_all_surrounding(positionData,positionInfo,neighborhoods)) >= checkData:
+                print(tower)
+                sys.exit()
             
     
  
