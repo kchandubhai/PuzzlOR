@@ -56,29 +56,14 @@ def calc_distance(position,homeinfo,xdata):
     outputData.append(tempOutput)
         
     return compare_list(outputData)
-        ##print(outputData)
-
-
-    #outputList = [i for i in area if i <= 4]
-
-    #if len(outputList) == len(homeinfo):
-    #    return position
-    #return None
-
-
-##>>>>>>> Stashed changes
-##
-##def calc_min(alist,blist):
-##    output = [min(alist[i],blist[i]) for i in range(len(blist))]
-##    return output
-##    
-##def compare_list(alist):
-##    countval = 0
-##    tempList = []
-##    while countval < len(alist)-1:
-##        tempList = calc_min(tempList,alist[countval])
-##    return tempList
-##    
+   
+def compare_list(alist):
+    countval = 0
+    tempList = []
+    while countval < len(alist)-1:
+        tempList = calc_min(tempList,alist[countval])
+    return tempList
+    
     
 
 
