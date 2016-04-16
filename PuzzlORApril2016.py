@@ -57,7 +57,7 @@ def main():
     "G7","G8","H2","H6","H10","I1","I6",
     "I7","I8","J1","J2","J4","J8"]
     
-    towerData = range(2,10)
+    towerData = range(3,10)
     checkData = math.ceil(0.7 * len(neighborhoods))
     
 #    positionData = ["A2","J1"]
@@ -72,11 +72,5 @@ def main():
             if len(get_all_surrounding(positionData,positionInfo,neighborhoods)) >= checkData:
                 print(tower)
                 sys.exit()
-            
-    
- 
-
-
-    
-    
+               
 main()
