@@ -67,7 +67,7 @@ def main():
 #    for value in itertools.combinations(area,2):
 #        positionData = list(value):
     for tower in towerData:
-        for areaInfo in itertools.combination(area,tower):
+        for areaInfo in itertools.combinations(area,tower):
             positionData = list(areaInfo)
             if len(get_all_surrounding(positionData,positionInfo,neighborhoods)) >= checkData:
                 print(tower)
