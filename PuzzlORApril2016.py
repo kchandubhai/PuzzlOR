@@ -5,18 +5,20 @@ import itertools
 import random
 import sys
 
-def generate_coordinate(value,alist):
-    tempList = []
-    tempVal = value[0]
-    tempNum = int(value[1])
-    tempVal1 = int(alist.index(tempVal)) + 1
-    tempList.extend([tempVal1,tempNum])
-    return tempList
+#def generate_coordinate(value,alist):
+#    tempList = []
+#    tempVal = value[0]
+#    tempNum = int(value[1])
+#    tempVal1 = int(alist.index(tempVal)) + 1
+#    tempList.extend([tempVal1,tempNum])
+#    return tempList
+
+def 
 
 def generate_area(xVal,yVal):
     return [str(x) + str(y) for x in xVal for y in yVal]
 
-def getSurroudingPosition(position, positionInfo):
+def get_surrouding_position(position, positionInfo):
     tempval = position[0]
     tempnum = int(position[1:])
     templistnum = []
@@ -58,12 +60,14 @@ def main():
     "G7","G8","H2","H6","H10","I1","I6",
     "I7","I8","J1","J2","J4","J8"]
     
-    noOfTowers = range(2,10)
-    print(len(neighborhoods))
+    towerData = range(2,10)
+    
+    for value in itertools.combinations(area,2):
+        positionData = list(value):
+            
+    
  
-#    for value in area:
-#        templist = getSurroudingPosition(value, positionInfo)
-#        print(value, templist)
+
 
     
     
