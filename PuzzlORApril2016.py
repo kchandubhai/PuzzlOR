@@ -1,19 +1,13 @@
 # PuzzlOR April 2016 Cell Towers
 
-import math
 import itertools
-import random
 import sys
 
-#def generate_coordinate(value,alist):
-#    tempList = []
-#    tempVal = value[0]
-#    tempNum = int(value[1])
-#    tempVal1 = int(alist.index(tempVal)) + 1
-#    tempList.extend([tempVal1,tempNum])
-#    return tempList
-
-def 
+def get_tower_surrounding(positionData,positionInfo):
+    output = []
+    for i in positionData:
+        output.extend(get_surrouding_position(i,positionInfo))
+    return list(set(output))
 
 def generate_area(xVal,yVal):
     return [str(x) + str(y) for x in xVal for y in yVal]
@@ -61,9 +55,10 @@ def main():
     "I7","I8","J1","J2","J4","J8"]
     
     towerData = range(2,10)
-    
-    for value in itertools.combinations(area,2):
-        positionData = list(value):
+    checkData = 0.7 * len(neighborhoods)
+    print(checkData)
+#    for value in itertools.combinations(area,2):
+#        positionData = list(value):
             
     
  
