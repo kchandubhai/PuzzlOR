@@ -19,7 +19,6 @@ def get_surrouding_position(position, positionInfo):
     tempval = position[0]
     tempnum = int(position[1:])
     templistnum = []
-    finallist = []
     templistval = positionInfo[tempval]
     if tempnum == 1:
         templistnum.extend([tempnum,tempnum+1])
@@ -27,10 +26,8 @@ def get_surrouding_position(position, positionInfo):
         templistnum.extend([tempnum-1,tempnum,tempnum+1])
     elif tempnum == 10:
         templistnum.extend([tempnum-1,tempnum])
-    for val in templistval:
-        for num in templistnum:
-            finallist.append(val + str(num))
-    return finallist
+    finalist = [val + str(num) for val in templistval for num in templistnum]
+    return finalist
 
 def main():
     xVal = ['A',"B","C","D","E","F","G","H","I","J"]
@@ -57,20 +54,14 @@ def main():
     "G7","G8","H2","H6","H10","I1","I6",
     "I7","I8","J1","J2","J4","J8"]
     
-    towerData = range(3,10)
+    towerData = [2,3,4,5]
     checkData = math.ceil(0.7 * len(neighborhoods))
     
-#    positionData = ["A2","J1"]
-#    print(checkData)
-#    print(get_all_surrounding(positionData,positionInfo))
-#    print(len(get_all_surrounding(positionData,positionInfo)))
-#    for value in itertools.combinations(area,2):
-#        positionData = list(value):
     for tower in towerData:
         for areaInfo in itertools.combinations(area,tower):
             positionData = list(areaInfo)
             if len(get_all_surrounding(positionData,positionInfo,neighborhoods)) >= checkData:
                 print(tower)
                 sys.exit()
-               
+#               
 main()
