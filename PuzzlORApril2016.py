@@ -54,14 +54,15 @@ def main():
     "G7","G8","H2","H6","H10","I1","I6",
     "I7","I8","J1","J2","J4","J8"]
     
-    towerData = [2,3,4,5]
+    towerData = [2,3,4,5,6,7,8,9,10]
     checkData = math.ceil(0.7 * len(neighborhoods))
+    otherArea = [value for value in area if value not in neighborhoods]
     
     for tower in towerData:
-        for areaInfo in itertools.combinations(area,tower):
+        for areaInfo in itertools.combinations(otherArea,tower):
             positionData = list(areaInfo)
             if len(get_all_surrounding(positionData,positionInfo,neighborhoods)) >= checkData:
                 print(tower)
                 sys.exit()
-#               
+               
 main()
