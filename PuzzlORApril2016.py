@@ -56,16 +56,13 @@ def main():
     
     towerData = [2,3,4,5,6,7,8,9,10]
     checkData = 0.7 * len(neighborhoods)
-    
-    outputData = [positionData for positionData in area if len(get_all_surrounding([positionData],positionInfo,neighborhoods)) >= 4]
-    #print(outputData)
-    #print(len(outputData))
+    outputData = [positionData for positionData in area if len(get_all_surrounding([positionData],positionInfo,neighborhoods)) >= 4]    
     
     for tower in towerData:
         for areaInfo in itertools.combinations(outputData,tower):
             positionData = list(areaInfo)
             if len(get_all_surrounding(positionData,positionInfo,neighborhoods)) >= checkData:
-                print(tower)
+                print(tower, positionData)
                 sys.exit()
                
 main()
