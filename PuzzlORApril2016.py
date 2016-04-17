@@ -64,5 +64,6 @@ def main():
             if len(get_all_surrounding(positionData,positionInfo,neighborhoods)) >= checkData:
                 print(tower, positionData)
                 sys.exit()
+
                
 main()
