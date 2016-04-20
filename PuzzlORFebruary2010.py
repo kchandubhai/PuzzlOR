@@ -5,15 +5,26 @@ import operator
 
 def calc_distance(position,resources,positionData):
     distance = 0
-    resourceData = []
-    while len(resourceData) < 4:
-        
-       resources[position] 
-    return [position,distance]
+    areaList = []
+    tempList = []
+    areaList.append(position)
+    adjacentArea = positionData[position]
+    areaList.extend(adjacentArea)
+    for i in adjacentArea:
+        tempList.extend(positionData[i])
+
+    for i in tempList:
+        if i not in areaList:
+            areaList.append(i)
+
+    outputList = []
+    for i in range(len(areaList)):
+        if areaList[i] in resources:
+            outputList.append([resources[areaList[i]],i])
+    print(outputList)
+    #return [position,distance]
 
 landingPosition = range(1,21)
-
-
 
 resources = {
 2:"energy",
@@ -25,29 +36,6 @@ resources = {
 19:"oxygen",
 20:"food",
 }
-
-#positionData = {
-#1:[2],
-#2:[3,10],
-#3:[2,4,12],
-#4:[3,5,14],
-#5:[4,6],
-#6:[5,7,15],
-#7:[6,8,17],
-#8:[7,9],
-#9:[8,10,20],
-#10:[2,9,11],
-#11:[10,12,19],
-#12:[3,11,13],
-#13:[12,14,18],
-#14:[4,13,15],
-#15:[6,14,16],
-#16:[15,17,18],
-#17:[7,16,19,20],
-#18:[13,16,19],
-#19:[11,17,18,20],
-#20:[9,17,19],
-#}
 
 positionData = {
 1:[2,8,5],
@@ -72,8 +60,13 @@ positionData = {
 20:[19,17,9]
 }
 
-distanceCalc = [calc_distance(position, resources, positionData) for position in landingPosition]
-sorted_distance = sorted(distanceCalc,key=operator.itemgetter(1))
-print(sorted_distance[0])
-    
-    
+calc_distance(19,resources,positionData)
+
+##for i in [1, 2, 8, 5, 10, 3, 7, 9, 4, 6]:
+##    if i in resources:
+##        print(i)
+##distanceCalc = [calc_distance(position, resources, positionData) for position in landingPosition]
+##sorted_distance = sorted(distanceCalc,key=operator.itemgetter(1))
+##print(sorted_distance[0])
+
+
