@@ -1,11 +1,14 @@
 #PuzzlOR February 2010 Planet Colonisation
 # area 19
 
-import math
 import operator
 
 def calc_distance(position,resources,positionData):
-    
+    distance = 0
+    resourceData = []
+    while len(resourceData) < 4:
+        
+       resources[position] 
     return [position,distance]
 
 landingPosition = range(1,21)
