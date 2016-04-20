@@ -4,10 +4,13 @@
 import math
 import operator
 
+def calc_distance(position,resources,positionData):
+    
+    return [position,distance]
 
 landingPosition = range(1,21)
 
-distanceCalc = []
+
 
 resources = {
 2:"energy",
@@ -66,4 +69,8 @@ positionData = {
 20:[19,17,9]
 }
 
-for position in landingPosition:
+distanceCalc = [calc_distance(position, resources, positionData) for position in landingPosition]
+sorted_distance = sorted(distanceCalc,key=operator.itemgetter(1))
+print(sorted_distance[0])
+    
+    
