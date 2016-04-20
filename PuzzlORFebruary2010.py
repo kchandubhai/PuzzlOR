@@ -4,9 +4,6 @@
 import math
 import operator
 
-def calc_distance(position,area):
-    resources = []
-
 
 landingPosition = range(1,21)
 
@@ -69,4 +66,4 @@ positionData = {
 20:[19,17,9]
 }
 
-for position in landingPosition
+for position in landingPosition:
