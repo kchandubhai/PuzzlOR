@@ -3,6 +3,46 @@
 
 import operator
 
+def generate_adjacent_position(position,positionData):
+    return positionData[position]
+
+def generate_distance(position,resourceData,positionData):
+    resourceList = []
+    positionTraversed = []
+    allPosition = []
+##    nextPosition = generate_adjacent_position(position,positionData)
+##    nextPosition.insert(0,position)
+##    #allPosition.append(nextPosition)
+##    for i in nextPosition:
+##        allPosition.append(generate_adjacent_position(i,positionData))
+##    print(allPosition)
+##
+##    for alist in allPosition:
+##        for i in alist:
+##            if i not in positionTraversed:
+##                positionTraversed.append(i)
+##                if i in resourceData:
+##                    resourceList.append(resourceData[i])
+##    print(positionTraversed)
+##    print(resourceList)
+##                if i in resourceData:
+##                    resourceList.append(resourceData[i])
+##                    resourceList = list(set(resourceList))
+
+
+
+##    startPosition = [position] + generate_adjacent_position(position,positionData)
+##    #print(currentPosition)
+##    for i in startPosition:
+##        if i in resourceData and i not in positionTraversed and \
+##        resourceData[i] not in resourceList:
+##            positionTraversed.append(i)
+##            resourceList.append(resourceData[i])
+##    print(positionTraversed)
+##    print(resourceList)
+
+
+
 
 
 landingPosition = range(1,21)
@@ -41,7 +81,7 @@ positionData = {
 20:[19,17,9]
 }
 
-#calc_distance(19,resources,positionData)
+generate_distance(6,resources,positionData)
 
 ##for i in [1, 2, 8, 5, 10, 3, 7, 9, 4, 6]:
 ##    if i in resources:
