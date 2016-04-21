@@ -3,26 +3,7 @@
 
 import operator
 
-def calc_distance(position,resources,positionData):
-    distance = 0
-    areaList = []
-    tempList = []
-    areaList.append(position)
-    adjacentArea = positionData[position]
-    areaList.extend(adjacentArea)
-    for i in adjacentArea:
-        tempList.extend(positionData[i])
 
-    for i in tempList:
-        if i not in areaList:
-            areaList.append(i)
-
-    outputList = []
-    for i in range(len(areaList)):
-        if areaList[i] in resources:
-            outputList.append([resources[areaList[i]],i])
-    print(outputList)
-    #return [position,distance]
 
 landingPosition = range(1,21)
 
@@ -60,7 +41,7 @@ positionData = {
 20:[19,17,9]
 }
 
-calc_distance(19,resources,positionData)
+#calc_distance(19,resources,positionData)
 
 ##for i in [1, 2, 8, 5, 10, 3, 7, 9, 4, 6]:
 ##    if i in resources:
