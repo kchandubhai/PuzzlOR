@@ -1,6 +1,15 @@
 # PuzzlOR December 2009 Fish Finder
-
+# f8
 import string
+import operator
+from collections import Counter
+
+def get_resource_count(alist,fishResource):
+    outputList = []
+    for value in alist:
+        outputList.extend(fishResource[value])
+    output =  Counter(outputList)
+    return output
 
 def main():
     xVal = range(1,11)
