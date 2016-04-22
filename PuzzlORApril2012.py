@@ -3,6 +3,7 @@
 import math
 import itertools
 import sys
+import string
 
 def generate_coordinate(value,alist):
     tempList = []
