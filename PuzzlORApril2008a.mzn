@@ -24,6 +24,7 @@ constraint x4+x5+x6+x7>=2;
 % minimize cost
 solve minimize x1 + x2 + x3 + x4 + x5 + x6 + x7;
 
+% output
 output ["Working four days a week","\n",
 "no. of monday workers = ", show(x1), "\n",
 "no. of tuesday workers = ", show(x2), "\n",
