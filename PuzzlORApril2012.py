@@ -65,8 +65,8 @@ def compare_list(alist):
     return tempList
     
 def main():
-    xVal = ['A',"B","C","D","E","F","G","H","I","J"]
-    yVal = [1,2,3,4,5,6,7,8,9,10]
+    xVal = [i for i in string.ascii_uppercase[:10]]
+    yVal = range(1,11) 
     homeLocation = ["A4","A8","A9","A10","B4","B7",
     "C8","C9","D2","E1","F2","F5","F6","G5","G9",
     "H3","H5","I5","I9","J7"]
