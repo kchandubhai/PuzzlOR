@@ -3,6 +3,7 @@
 import itertools
 import sys
 import math
+import string
 
 def get_all_surrounding(positionData,positionInfo, neighborhood):
     output = []
@@ -30,8 +31,8 @@ def get_surrouding_position(position, positionInfo):
     return finalist
 
 def main():
-    xVal = ['A',"B","C","D","E","F","G","H","I","J"]
-    yVal = [1,2,3,4,5,6,7,8,9,10]
+    xVal = [i for i in string.ascii_uppercase[:10]]
+    yVal = range(1,11)
     
     area = generate_area(xVal,yVal)
     
