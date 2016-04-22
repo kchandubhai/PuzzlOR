@@ -1,4 +1,4 @@
-# PuzzlOR October 2015
+# PuzzlOR October 2015 Racecar design
 
 import math
 import operator
