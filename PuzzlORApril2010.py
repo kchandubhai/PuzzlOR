@@ -33,7 +33,6 @@ def main():
     }
 
     patient21 = [0,1,1,1]
-    patient21 = [0,1,1,1]
     symptom = [[patientinfo[patient][1],euclidean_distance(patientinfo[patient][0],patient21)]for patient in patientinfo]
     print(sorted(symptom, key=itemgetter(1)))
 
