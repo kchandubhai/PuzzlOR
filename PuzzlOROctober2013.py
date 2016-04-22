@@ -39,5 +39,6 @@ def main():
         countval+=1
     print(rolllist)
     print("Avg number of rolls is " + str(round(sum(rolllist)/totalrolls,1)))
-        
+    
+    
 main()
