@@ -1,84 +1,49 @@
 #PuzzlOR February 2010 Planet Colonisation
-# area 19
 
 import operator
 
-def calc_distance(alist,resourceData,resourceList):
-    newresourceList = resourceList
-    outputList = []
-    for value in alist:
-        if value in resourceData:
-            if resourceData[value] not in newresourceList:
-                outputList.append([resourceData[value],1])
-                newresourceList.append(resourceData[value])
-    return [outputList,newresourceList]
+def get_resources(alist,resourceData,distance):
+    return [[resourceData[i],distance,i] for i in alist if i in resourceData]
 
 def generate_adjacent_position(position,positionData):
     return positionData[position]
 
 def generate_distance(position,resourceData,positionData):
-    distanceData = 0
+    outputList = []
+    outputList2 = []
     resourceList = []
-    positionTraversed = []
-    #check position
+    positionList = []
+    #check first position
     if position in resourceData:
-        resourceList.append(resourceData[position])
+        outputList.append([resourceData[position],0,position])
 
-##    #first set of positions
-##    adjacentPosition = generate_adjacent_position(position,positionData)
-##    print(calc_distance(adjacentPosition,resourceData,resourceList))
-##
-##    #check left side
+    adjacentPosition = generate_adjacent_position(position,positionData)
+    outputList.extend(get_resources(adjacentPosition,resourceData,1))
+    # generate left position
+    leftPosition = generate_adjacent_position(adjacentPosition[0],positionData)
+    outputList.extend(get_resources(leftPosition,resourceData,2))
+    #generate middle position
+    middlePosition = generate_adjacent_position(adjacentPosition[1],positionData)
+    outputList.extend(get_resources(middlePosition,resourceData,2))
+    #generate right position
+    rightPosition = generate_adjacent_position(adjacentPosition[2],positionData)
+    outputList.extend(get_resources(rightPosition,resourceData,2))
 
-
-
-
-
-
-    print(resourceList)
-    #print(adjacentPosition)
-##    nextPosition = generate_adjacent_position(position,positionData)
-##    nextPosition.insert(0,position)
-##    #allPosition.append(nextPosition)
-##    for i in nextPosition:
-##        allPosition.append(generate_adjacent_position(i,positionData))
-##    print(allPosition)
-##
-##    for alist in allPosition:
-##        for i in alist:
-##            if i not in positionTraversed:
-##                positionTraversed.append(i)
-##                if i in resourceData:
-##                    resourceList.append(resourceData[i])
-##    print(positionTraversed)
-##    print(resourceList)
-##                if i in resourceData:
-##                    resourceList.append(resourceData[i])
-##                    resourceList = list(set(resourceList))
-
-
-
-##    startPosition = [position] + generate_adjacent_position(position,positionData)
-##    #print(currentPosition)
-##    for i in startPosition:
-##        if i in resourceData and i not in positionTraversed and \
-##        resourceData[i] not in resourceList:
-##            positionTraversed.append(i)
-##            resourceList.append(resourceData[i])
-##    print(positionTraversed)
-##    print(resourceList)
-
-
-
-
-
-landingPosition = range(1,21)
+    #print(outputList)
+    distanceCalc = 0
+    for info in outputList:
+        if info[0] not in resourceList and info[2] not in positionList:
+            distanceCalc += info[1]
+            resourceList.append(info[0])
+            positionList.append(info[2])
+    outputList2.extend([distanceCalc,resourceList])
+    return outputList2
 
 resources = {
 2:"energy",
 7:"food",
 8:"water",
-12:"power",
+12:"energy",
 14:"oxygen",
 16:"water",
 19:"oxygen",
@@ -108,13 +73,13 @@ positionData = {
 20:[19,17,9]
 }
 
-generate_distance(9,resources,positionData)
+landingPosition = range(1,21)
 
-##for i in [1, 2, 8, 5, 10, 3, 7, 9, 4, 6]:
-##    if i in resources:
-##        print(i)
-##distanceCalc = [calc_distance(position, resources, positionData) for position in landingPosition]
-##sorted_distance = sorted(distanceCalc,key=operator.itemgetter(1))
-##print(sorted_distance[0])
+outputData = []
+for position in landingPosition:
+    temp = generate_distance(position,resources,positionData) + [position]
+    if len(temp[1]) == 4:
+        outputData.append(temp)
 
-
+sortedOutpData = sorted(outputData,key=operator.itemgetter(0))
+print(sortedOutpData[0][2])
