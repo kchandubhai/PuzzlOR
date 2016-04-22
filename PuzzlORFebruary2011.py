@@ -1,8 +1,6 @@
 # PuzzlOR February 2011
 # Best Host
 
-
-
 def main():
     people = ["Andrew","Betty","Cara","Dave","Erica","Frank"]
     arrangement = []
