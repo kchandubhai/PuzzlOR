@@ -1,5 +1,5 @@
 # PuzzlOR December 2009 Fish Finder
-# f8
+
 import string
 import operator
 from collections import Counter
@@ -8,8 +8,12 @@ def get_resource_count(alist,fishResource):
     outputList = []
     for value in alist:
         outputList.extend(fishResource[value])
-    output =  Counter(outputList)
-    return output
+    checkVal =  Counter(outputList)
+    output = []
+    for value in checkVal:
+        if checkVal[value] > 1:
+            output.append(value)
+    return(output)
 
 def main():
     xVal = range(1,11)
@@ -72,5 +76,16 @@ def main():
 
     goodFishingSpot = ["D3","H4","E7","G9"]
     badFishingSpot = ["G1","G3","D5","G6"]
+
+    goodSpotCharacteristics = get_resource_count(goodFishingSpot,fishSpot)
+    badSpotCharacterisitics = get_resource_count(badFishingSpot,fishSpot)
+    goodSpot = [i for i in goodSpotCharacteristics  if i not in badSpotCharacterisitics]
+    
+
+    output = [i for i in fishSpot if set(fishSpot[i]) == set(goodSpot)]
+    print(output)
+    
+
+
 
 main()
