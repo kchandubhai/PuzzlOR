@@ -29,7 +29,6 @@ def boardPosition(value):
         elif value == 6 or value == 7:
             return "Blue"
 
-
 rollcount = 0
 maxvalue = 100000
 outcome = {}
