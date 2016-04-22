@@ -1,5 +1,5 @@
 # PuzzlOR October 2014 - Fighters
-#http://www.puzzlor.com/2014-10_Fighters.html
+
 import random
 from collections import Counter
 import operator
