@@ -3,6 +3,7 @@
 import random
 import math
 import itertools
+import string
 
 def find_min(alist):
     minval = min(alist)
@@ -41,26 +42,22 @@ def generate_coordinate(value,alist):
     return tempList
 
 def generate_area(xVal,yVal):
-    templist = []
-    for x in xVal:
-        for y in yVal:
-            templist.append(str(y) + str(x))
-    return templist
+    return [str(y) + str(x) for x in xVal for y in yVal]
 
 def euclidean_distance(a,b):
     c = [math.pow(a[i] - b[i],2) for i in range(len(a))]
     return math.sqrt(sum(c))
 
 def main():
-    xVal = [1,2,3,4,5,6,7,8,9,10]
-    yVal = ["A","B","C","D","E","F","G","H","I","J"]
+    xVal = range(1,11)
+    yVal = [i for i in string.ascii_uppercase[:10]]
     neighborhoods = ["A6","B2","B4","B5","B7",
                      "C5","C10","D9","E2","E6",
                      "E8","F3","F5","G8","G9",
                      "H3","H5","H7","H8","J4"]
-    
+
     allList = generate_area(xVal,yVal)
-    countlist = []   
+    countlist = []
     for substations in itertools.combinations(allList,3):
          tempval = generate_distance(list(substations), neighborhoods, yVal)
          countlist.append(tempval)
