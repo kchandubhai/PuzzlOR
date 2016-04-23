@@ -1,30 +1,25 @@
 # PuzzlOR June 2013 Self Driving Cars
-import itertools
-import random
+
 import math
 import operator
 
 def checkVal(alist,blist):
-    templist = []
-    for val in alist:
-        if val not in blist:
-            templist.append(val)
-    return templist
+    return [ val for val in alist if val not in blist]
 
 def euclidean_distance(a,b):
     c = [math.pow(a[i] - b[i],2) for i in range(len(b))]
-    return round(math.sqrt(sum(c)),2)
+    return round(math.sqrt(sum(c)),3)
 
 def find_closest(endpoint,area,startPositionList):
-    tempDistanceList = []
-    tempDistanceList3 = []
+    distanceList = []
+    distanceList3 = []
     for value in area:
-        tempDistanceList.append([value,euclidean_distance(endpoint,value[0])])
-    tempDistanceList2 =  sorted(tempDistanceList,key=operator.itemgetter(1))
-    for val in tempDistanceList2:
-        tempDistanceList3.append(val[0])
-    tempval2 = checkVal(tempDistanceList3,startPositionList)
-    return tempval2[0]
+        distanceList.append([value,euclidean_distance(endpoint,value[0])])
+    distanceList2 =  sorted(distanceList,key=operator.itemgetter(1))
+    for val in distanceList2:
+        distanceList3.append(val[0])
+    outputList = checkVal(distanceList3,startPositionList)
+    return outputList[0]
 
 def main():
     area = [[[2,1],[5,2]],[[7,1],[9,4]],
@@ -52,7 +47,7 @@ def main():
            countval += 1
        temp = checkVal(area,startPositionList)
        temp_distance_calc = euclidean_distance(startPositionList[len(startPositionList)-1][1],temp[0][0]) + euclidean_distance(temp[0][0],temp[0][1])
-       calcList.append(round(distance_calc + temp_distance_calc,2))
+       calcList.append(round(distance_calc + temp_distance_calc,3))
     calcList.sort()
     print(calcList)
 
