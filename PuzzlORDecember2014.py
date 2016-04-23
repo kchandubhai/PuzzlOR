@@ -23,12 +23,16 @@ def generate_distance(substation,neighborhood,yVal):
     for area in neighborhood:
         areaCalc = generate_coordinate(area,yVal)
         templist = [
-        euclidean_distance(areaCalc,substation0position),
-        euclidean_distance(areaCalc,substation1position),
-        euclidean_distance(areaCalc,substation2position)
+        round(euclidean_distance(areaCalc,substation0position),2),
+        round(euclidean_distance(areaCalc,substation1position),2),
+        round(euclidean_distance(areaCalc,substation2position),2)
         ]
         templist2.append(find_min(templist))
+        print(templist)
+        #print(templist2)
         distanceCalc += min(templist)
+        #print(distanceCalc)
+    print(templist2)
     if len(set(templist2)) != 3:
         distanceCalc = 10000
     return round(distanceCalc,2)
@@ -36,7 +40,7 @@ def generate_distance(substation,neighborhood,yVal):
 def generate_coordinate(value,alist):
     tempList = []
     tempVal = value[0]
-    tempNum = int(value[1])
+    tempNum = int(value[1]) - 1
     tempVal1 = int(alist.index(tempVal)) + 1
     tempList.extend([tempVal1,tempNum])
     return tempList
@@ -55,14 +59,22 @@ def main():
                      "C5","C10","D9","E2","E6",
                      "E8","F3","F5","G8","G9",
                      "H3","H5","H7","H8","J4"]
-
+    #print(generate_coordinate("E6",yVal))
+    #[(1, 2), (0, 6), (8, 3)]
+#    ["C2","G1","D9"]
     allList = generate_area(xVal,yVal)
     countlist = []
-    for substations in itertools.combinations(allList,3):
-         tempval = generate_distance(list(substations), neighborhoods, yVal)
-         countlist.append(tempval)
+    tempval = generate_distance(["B1","F1","H4"], neighborhoods, yVal)
+    countlist.append(tempval)
     output = list(set(countlist))
     output.sort()
     print(output[0])
+    
+#    for substations in itertools.combinations(allList,3):
+#         tempval = generate_distance(list(substations), neighborhoods, yVal)
+#         countlist.append(tempval)
+#    output = list(set(countlist))
+#    output.sort()
+#    print(output[0])
 
 main()
