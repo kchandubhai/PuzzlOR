@@ -1,4 +1,5 @@
 # PuzzlOR June 2013 Self Driving Cars
+# 64.347
 
 import math
 import operator
@@ -24,32 +25,33 @@ def main():
     	   [[4,5],[7,9]],[[8,5],[2,4]],
     	   [[3,7],[7,7]],[[4,8],[1,10]],
     	   [[3,10],[10,7]],[[8,10],[9,8]]]
-    calcList = []
-    countval = 0
-    startPositionList = []
-    distanceCalc = 0
-    temp_distance_calc = 0
-    calcList = []
-    for value in area:
-       startPosition = value
-       countval = 0
-       startPositionList = []
-       distance_calc = 0
-       while countval < len(area)-1:
-           distanceCalc += euclidean_distance(startPosition[0],startPosition[1])
-           startPositionList.append(startPosition)
-           nextPosition = find_closest(startPosition[1],area,startPositionList)
-           distanceCalc += euclidean_distance(startPosition[1],nextPosition[0])
-           startPosition = nextPosition
-           countval += 1
-       temp = checkVal(area,startPositionList)
-       print(countval)
-       print(distanceCalc)
-       #temp_distance_calc = euclidean_distance(startPositionList[len(startPositionList)-1][1],temp[0][0]) + euclidean_distance(temp[0][0],temp[0][1])
-       #calcList.append(round(distance_calc + temp_distance_calc,3))
-       calcList.append(round(distance_calc,3))
-    calcList.sort()
-    print(calcList)
+#    calcList = []
+#    countval = 0
+#    startPositionList = []
+#    distanceCalc = 0
+#    temp_distance_calc = 0
+#    calcList = []
+#    for value in area:
+#       startPosition = value
+#       countval = 0
+#       startPositionList = []
+#       distance_calc = 0
+#       while countval < len(area)-1:
+#           distanceCalc += euclidean_distance(startPosition[0],startPosition[1])
+#           startPositionList.append(startPosition)
+#           nextPosition = find_closest(startPosition[1],area,startPositionList)
+#           distanceCalc += euclidean_distance(startPosition[1],nextPosition[0])
+#           startPosition = nextPosition
+#           countval += 1
+#       temp = checkVal(area,startPositionList)
+#       print(countval)
+#       print(distanceCalc)
+#       #temp_distance_calc = euclidean_distance(startPositionList[len(startPositionList)-1][1],temp[0][0]) + euclidean_distance(temp[0][0],temp[0][1])
+#       #calcList.append(round(distance_calc + temp_distance_calc,3))
+#       calcList.append(round(distance_calc,3))
+#    calcList.sort()
+#    print(calcList)
+        
 
 
 main()
