@@ -1,6 +1,5 @@
 # PuzzlOR October 2008 Noah's 3DPP
 
-import math
 import operator
 
 def space_left(alist,blist):
@@ -41,7 +40,7 @@ def main():
     else:
         print("Choose decreasing algorithm")
     
-    
+    ##second question yes use decreasing algorithm
 
 
     
