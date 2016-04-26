@@ -9,7 +9,7 @@ def checkVal(alist,blist):
 
 def euclidean_distance(a,b):
     c = [math.pow(a[i] - b[i],2) for i in range(len(b))]
-    return round(math.sqrt(sum(c)),3)
+    return math.sqrt(sum(c))
 
 def find_closest(endpoint,area,startPositionList):
 
@@ -40,9 +40,9 @@ def main():
            startPosition = nextPosition
            countval += 1
        print(startPositionList)
-       finalDistance = distanceCalc + euclidean_distance(startPositionList[len(startPositionList)-1][1],startPosition[0]) 
-       +  euclidean_distance(startPosition[0],startPosition[1])
+       finalDistance = distanceCalc +  euclidean_distance(startPosition[0],startPosition[1])  + euclidean_distance(startPositionList[len(startPositionList)-1][1],startPosition[0]) 
        calcList.append(round(finalDistance,3))
+       calcList.sort()
        print(calcList)
 
         
