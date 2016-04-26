@@ -3,6 +3,12 @@
 import math
 import operator
 
+def space_left(alist,blist):
+    for value in blist:
+        alist[3] -= value[3]
+    return alist[3]
+    
+
 def calc_size(alist):
     output = 1
     for value in alist:
@@ -26,10 +32,16 @@ def main():
         fitList.append(info)
     fitListIncrease = sorted(fitList,key=operator.itemgetter(3))
     fitListDecrease = sorted(fitList,key=operator.itemgetter(3),reverse=True)
-    print(fitListDecrease)
-    print(fitListIncrease)
 
     arkCalc = ["ark",1,ark,calc_size(ark)]
+    
+    ##packing size
+    if space_left(arkCalc,fitListIncrease) < space_left(arkCalc,fitListDecrease):
+        print("Choose Increasing algorithm")
+    else:
+        print("Choose decreasing algorithm")
+    
+    
 
 
     
