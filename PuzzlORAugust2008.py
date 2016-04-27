@@ -1,7 +1,8 @@
 # PuzzlOR August 2008 Markov Prison
-# Markov’s Prison - 1,5,6,10,11,12,16, 0.4712
+#  0.4712
 
 import random
+
 def generate_guard1(position,prison):
 	val = round(random.random(),1)
 	if val < 0.2:
@@ -42,6 +43,24 @@ def prisoner_move(position,prison):
 		newMove = position
 	return newMove
 
+def guard_move(position,prison,guardData):
+    weighted_choices = guardData
+    population = [val for val, cnt in weighted_choices for i in range(cnt)]
+    output = random.choice(population)
+    if output == "North":
+        tempval = 0
+    elif output == "South":
+        tempval = 1
+    elif output == "East":
+        tempval = 2
+    else:
+        tempval = 3
+    nextMoves = prison[position]
+    nextMove = nextMoves[tempval]
+    if nextMove == 0:
+        nextMove = position
+    return nextMove
+
 
 prison = {
 1:[0,5,0,2],
@@ -62,11 +81,16 @@ prison = {
 16:[12,0,0,15],
 }
 
+guardData1 = [("North",20),("South",40),("East",20),("West",20)]
+guardData2 = [("North",40),("South",10),("East",20),("West",30)]
+
+
 countval = 0
-maxcountval = 10000
+maxcountval = 10001
 outcomeList = []
 
 while countval < maxcountval:
+
     prisonerPositionlist = []
     caught = False
     prisonerPosition = 1
@@ -83,10 +107,9 @@ while countval < maxcountval:
             break
         else:
             prisonerPosition = prisoner_move(prisonerPosition,prison)
-            guard1Position = generate_guard1(guard1Position,prison)
-            guard2Position = generate_guard2(guard2Position,prison)
+            guard1Position = guard_move(guard1Position,prison,guardData1)
+            guard2Position = guard_move(guard2Position,prison,guardData2)
             prisonerPositionlist.append(prisonerPosition)
-
     countval +=1
 
 escapeRoute = []
