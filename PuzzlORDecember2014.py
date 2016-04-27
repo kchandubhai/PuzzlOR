@@ -1,5 +1,4 @@
 # PuzzlOR December 2014 Electrifying
-
 import math
 import itertools
 import string
@@ -46,7 +45,6 @@ def main():
                      "C5","C10","D9","E2","E6",
                      "E8","F3","F5","G8","G9",
                      "H3","H5","H7","H8","J4"]
-
     allList = generate_area(xVal,yVal)
     countlist = []    
     for substations in itertools.combinations(allList,3):
