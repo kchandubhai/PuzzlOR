@@ -1,47 +1,18 @@
+
 # PuzzlOR August 2008 Markov Prison
 #  0.4712
 
 import random
 
-def generate_guard1(position,prison):
-	val = round(random.random(),1)
-	if val < 0.2:
-		tempval =  0
-	elif val < 0.6:
-		tempval = 1
-	elif val < 0.8:
-		tempval = 2
-	tempval = 3
-	nextMoves = prison[position]
-	nextMove = nextMoves[tempval]
-	if nextMove == 0:
-		nextMove = position
-	return nextMove
-
-def generate_guard2(position,prison):
-	val = round(random.random(),1)
-	if val < 0.4:
-		tempval = 0
-	elif val < 0.5:
-		tempval = 1
-	elif val < 0.7:
-		tempval = 2
-	tempval = 3
-	nextMoves = prison[position]
-	nextMove = nextMoves[tempval]
-	if nextMove == 0:
-		nextMove = position
-	return nextMove
-
 def generate_random(alist):
 	return random.randint(0,len(alist)-1)
-	
+
 def prisoner_move(position,prison):
-	nextMoves = prison[position]
-	newMove = nextMoves[generate_random(nextMoves)]
-	if newMove == 0:
-		newMove = position
-	return newMove
+    nextMoves = prison[position]
+    newMove = nextMoves[generate_random(nextMoves)]
+    if newMove == 0:
+        return position
+    return newMove
 
 def guard_move(position,prison,guardData):
     weighted_choices = guardData
@@ -81,12 +52,11 @@ prison = {
 16:[12,0,0,15],
 }
 
-guardData1 = [("North",20),("South",40),("East",20),("West",20)]
-guardData2 = [("North",40),("South",10),("East",20),("West",30)]
-
+guardData1 = [("North",2),("South",4),("East",2),("West",2)]
+guardData2 = [("North",4),("South",1),("East",2),("West",3)]
 
 countval = 0
-maxcountval = 10001
+maxcountval = 100
 outcomeList = []
 
 while countval < maxcountval:
@@ -101,15 +71,15 @@ while countval < maxcountval:
         if prisonerPosition == guard1Position or prisonerPosition == guard2Position:
             outcomeList.append(["caught",prisonerPositionlist])
             caught = True
-            break
         elif prisonerPosition == 16:
+            prisonerPositionlist.append(16)
             outcomeList.append(["escaped",prisonerPositionlist])
-            break
+            caught = True
         else:
+            prisonerPositionlist.append(prisonerPosition)
             prisonerPosition = prisoner_move(prisonerPosition,prison)
             guard1Position = guard_move(guard1Position,prison,guardData1)
             guard2Position = guard_move(guard2Position,prison,guardData2)
-            prisonerPositionlist.append(prisonerPosition)
     countval +=1
 
 escapeRoute = []
@@ -119,5 +89,5 @@ for value in outcomeList:
         escapeRoute.append(value[1])
     elif value[0] == "caught":
         caughtCount += 1
-#print(escapeRoute)
+print(escapeRoute)
 print(caughtCount/len(outcomeList))
