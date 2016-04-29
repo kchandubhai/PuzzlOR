@@ -1,8 +1,8 @@
 
 # PuzzlOR August 2008 Markov Prison
-#  0.4712
 
 import random
+import math
 
 def generate_random(alist):
 	return random.randint(0,len(alist)-1)
@@ -32,7 +32,6 @@ def guard_move(position,prison,guardData):
         nextMove = position
     return nextMove
 
-
 prison = {
 1:[0,5,0,2],
 2:[0,6,3,1],
@@ -55,8 +54,9 @@ prison = {
 guardData1 = [("North",2),("South",4),("East",2),("West",2)]
 guardData2 = [("North",4),("South",1),("East",2),("West",3)]
 
+
 countval = 0
-maxcountval = 100
+maxcountval = 10000
 outcomeList = []
 
 while countval < maxcountval:
@@ -64,19 +64,20 @@ while countval < maxcountval:
     prisonerPositionlist = []
     caught = False
     prisonerPosition = 1
-    guard1Position = 16
-    guard2Position = 16
+    guard1Position = random.randint(2,16)
+    guard2Position = random.randint(2,16)
 
     while not caught:
         if prisonerPosition == guard1Position or prisonerPosition == guard2Position:
-            outcomeList.append(["caught",prisonerPositionlist])
+            outcomeList.append(["caught"])
             caught = True
         elif prisonerPosition == 16:
             prisonerPositionlist.append(16)
             outcomeList.append(["escaped",prisonerPositionlist])
             caught = True
         else:
-            prisonerPositionlist.append(prisonerPosition)
+            if prisonerPosition not in prisonerPositionlist:
+                prisonerPositionlist.append(prisonerPosition)
             prisonerPosition = prisoner_move(prisonerPosition,prison)
             guard1Position = guard_move(guard1Position,prison,guardData1)
             guard2Position = guard_move(guard2Position,prison,guardData2)
