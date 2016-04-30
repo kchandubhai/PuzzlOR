@@ -3,26 +3,10 @@
 import math
 import operator
 import itertools
-from sympy import symbols, solve
 
 
-#AE,BE,CE,AT,BT,CT,ATR,BTR,CTR,AB,BB,CB = symbols('AE BE CE AT BT CT ATR BTR CTR AB BB CB')
-#
-#system = [
-#AE + AT + ATR + CB - 12,
-#CE + BT + ATR + CB - 17,
-#CE + AT + BTR + BB - 14,
-#BE + BT + ATR + CB - 13,
-#AE + BT + BTR + AB - 15,
-#AE + CT + BTR + CB - 11,
-#BE + CT + CTR + AB - 16,
-#BE + BT + ATR + BB - 19,
-#CE + AT + CTR + AB - 18,
-#CE + CT + CTR + BB - 20
-#]
-#
-#
-#print (solve(system))
+
+
 
 
 #def euclidean_distance(a,b):
@@ -69,6 +53,12 @@ from sympy import symbols, solve
 ##print(find_closest(config,sampleRaceCar,configurationData))
 #
 
+def calc_parts(config,scores):
+    distanceCalc = 0
+    for value in config:
+        distanceCalc += scores[value]
+    return distanceCalc
+
 outputList = []
 engines = ["AE","BE","CE"]
 tires = ["AT","BT","CT"]
@@ -96,7 +86,9 @@ for engine in engines:
         for transmission in transmissions:
             for brake in brakes:
                 config = [engine,tire,transmission,brake]
-                print(config)
+                outputList.append([config,calc_parts(config,scores)])
+outputListSorted = sorted(outputList,key=operator.itemgetter(1))
+print(outputListSorted)
 #                outputList.append(find_closest(config,sampleRaceCar,configurationData))
 #sorted_outputList = sorted(outputList,key=operator.itemgetter(1))
 #
