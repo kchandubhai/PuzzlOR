@@ -2,13 +2,15 @@
 ## Connected and infected
 ## 21
 
-def update_area(areaData,areaScore,infectedArea):
-    areaInfo = []
+def update_population(area,areaList):
+    for areas in areaList:
+        for value in areas[0]:
+
+
+def disease_spread(areaData,infectedArea):
+    output = []
     for value in infectedArea:
-        areaInfo.extend(areaData[value])
-    areaInfo = list(set(areaInfo))
-    for value in areaScore:
-        if value[0] in areaInfo:
+        update_populationp(value,areaData[value])
 
 
 
@@ -19,16 +21,14 @@ def update_area(areaData,areaScore,infectedArea):
 
 
 
-# add areascore to area data
+
 areaData = {
-"blue":["blue","violet","red"],
-"violet":["violet","blue","green","yellow"],
-"red":["red","blue"],
-"yellow":["yellow","violet"],
-"green":["green","violet"]
+"blue":[["blue","violet","red"],10000],
+"violet":[["violet","blue","green","yellow"],0],
+"red":[["red","blue"],0],
+"yellow":[["yellow","violet"],0],
+"green":[["green","violet"],0]
 }
-
-areaScore = [["blue",10000],["violet",0],["red",0],["yellow",0],["green",0]]
 
 constval = 10**9
 currentBlue = 0.5 * constval
@@ -44,19 +44,10 @@ infectedArea = ["blue"]
 monthCount = 0
 populationInfected = 0
 
-print(update_area(areaData,areaScore,infectedArea))
 
 while populationInfected < 0.5*currentPopulation:
 
-    output = update_area(areaData,areaScore,infectedArea)
-    populationInfected = output[0]
-    infectedArea = output[1]
-    print(populationInfected)
-    monthCount+=1
+    disease_spread(areaData,infectedArea)
+
     break
 print(monthCount)
-
-
-
-
-
