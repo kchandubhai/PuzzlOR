@@ -1,5 +1,4 @@
-# PuzzlOR December 2015
-# Crazy Cake
+# PuzzlOR December 2015 Crazy Cake
 
 import itertools
 import math
