@@ -1,12 +1,12 @@
 
 # PuzzlOR August 2008 Markov Prison
-
 import random
 import math
 
 def generate_random(alist):
 	return random.randint(0,len(alist)-1)
 
+#update the prisoner position and make it less random
 def prisoner_move(position,prison):
     nextMoves = prison[position]
     newMove = nextMoves[generate_random(nextMoves)]
