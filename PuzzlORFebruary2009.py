@@ -11,8 +11,7 @@ def find_closest(position,allPosition,positionUsed,xVal):
             positionData.append([value,euclidean_distance(generate_coordinate(position,xVal),generate_coordinate(value,xVal))])
     sortedPosition = sorted(positionData,key=operator.itemgetter(0))
     return sortedPosition[0]
-            
-            
+                 
 def euclidean_distance(a,b):
     return math.sqrt(sum([math.pow(a[i]-b[i],2) for i in range(len(a))]))
 
@@ -25,24 +24,24 @@ def generate_coordinate(value,alist):
 def generate_area(xVal,yVal):
     return [str(x) + str(y) for x in xVal for y in yVal]
 
-def assign(factories,towns):
+def assign(factories,towns,xVal):
     distanceCalc = 0
     for factory in factories:
         townAssigned = []
-        factoryAssigned = []
         checkVal = False
         while not checkVal:
-            if len(townAssigned) == len(factories):
-                checkVal = False
+            townData = find_closest(factory,towns,townAssigned,xVal) #find closest town
+            townDataTemp = factories[factory]
+            factoryDataTemp = towns[townData[1]]
+            if factoryDataTemp <= abs(townDataTemp):
+                towns[townData[1]] += factoryDataTemp
+                checkVal = True
                 break
-            else:
-                
-
-
-
-    return distanceCalc
-
-
+            elif factoryDataTemp >= abs(townDataTemp):
+                townAssigned.append(townData[1])
+                factories[factory] += towns[townData[1]]                
+                towns[townData[1]] = 0
+                        								
 def main():
     xVal = ["A","B","C","D","E"]
     yVal = [1,2,3,4,5]
@@ -62,8 +61,11 @@ def main():
         temp[area] = possibleAreaCapacity
         tempFactories = temp
         tempFactories.update(factories)
-        sorted(tempFactories.values())       
-        outputList.append(assign(tempFactories,towns))
+        #print(tempFactories)        
+        #sortedFactories = sorted(tempFactories.items(),key=operator.itemgetter(1,0))
+        #print(dict(sortedFactories))
+              
+        #outputList.append(assign(tempFactories,towns,xVal))
     print(outputList)
         
 main()        
