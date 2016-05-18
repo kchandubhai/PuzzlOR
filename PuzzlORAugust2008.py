@@ -6,7 +6,6 @@ import math
 def generate_random(alist):
 	return random.randint(0,len(alist)-1)
 
-#update the prisoner position and make it less random
 def prisoner_move(position,prison):
     nextMoves = prison[position]
     newMove = nextMoves[generate_random(nextMoves)]
@@ -53,7 +52,6 @@ prison = {
 
 guardData1 = [("North",2),("South",4),("East",2),("West",2)]
 guardData2 = [("North",4),("South",1),("East",2),("West",3)]
-
 
 countval = 0
 maxcountval = 10000
