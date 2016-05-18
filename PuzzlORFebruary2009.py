@@ -4,6 +4,15 @@
 import math
 import operator
 
+def find_closest(position,allPosition,positionUsed,xVal):
+    positionData = []
+    for value in allPosition:
+        if value not in positionUsed:
+            positionData.append([value,euclidean_distance(generate_coordinate(position,xVal),generate_coordinate(value,xVal))])
+    sortedPosition = sorted(positionData,key=operator.itemgetter(0))
+    return sortedPosition[0]
+            
+            
 def euclidean_distance(a,b):
     return math.sqrt(sum([math.pow(a[i]-b[i],2) for i in range(len(a))]))
 
@@ -23,6 +32,11 @@ def assign(factories,towns):
         factoryAssigned = []
         checkVal = False
         while not checkVal:
+            if len(townAssigned) == len(factories):
+                checkVal = False
+                break
+            else:
+                
 
 
 
@@ -38,23 +52,21 @@ def main():
     towns = {"A4":-500,"B2":-2000,"C4":-500,"E1":-1500,"E5":-500}
     factoryTownData = ["A1","A5","C3","E2","A4","B2","C4","E1","E5"]
 
-
     possibleArea = [i for i in area if i not in factoryTownData]
     possibleAreaCapacity = 1000
 
-    outputList = []
 
+    outputList = []
     for area in possibleArea:
         temp = {}
         temp[area] = possibleAreaCapacity
         tempFactories = temp
         tempFactories.update(factories)
-        sorted(tempFactories.values())
+        sorted(tempFactories.values())       
         outputList.append(assign(tempFactories,towns))
     print(outputList)
         
-
-        
+main()        
 
         
 
