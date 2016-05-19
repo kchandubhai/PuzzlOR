@@ -25,22 +25,27 @@ def generate_area(xVal,yVal):
     return [str(x) + str(y) for x in xVal for y in yVal]
 
 def assign(factories,towns,xVal):
-    distanceCalc = 0
+    assigned = []
+    assigned2 = []
     for factory in factories:
         townAssigned = []
         checkVal = False
         while not checkVal:
-            townData = find_closest(factory,towns,townAssigned,xVal) #find closest town
-            townDataTemp = factories[factory]
-            factoryDataTemp = towns[townData[1]]
+            townData = find_closest(factory,towns,townAssigned,xVal)
+            townDataTemp = towns[townData[0]]
+            factoryDataTemp = factories[factory]
             if factoryDataTemp <= abs(townDataTemp):
-                towns[townData[1]] += factoryDataTemp
+                factories[factory] = 0
+                towns[townData[0]] += factoryDataTemp
                 checkVal = True
+                assigned2.append([factory,townData[0]])
                 break
             elif factoryDataTemp >= abs(townDataTemp):
-                townAssigned.append(townData[1])
-                factories[factory] += towns[townData[1]]                
-                towns[townData[1]] = 0
+                townAssigned.append(townData[0])
+                factories[factory] += towns[townData[0]]                
+                towns[townData[0]] = 0
+                assigned.append([factory,townData[0]])
+    return (assigned,assigned2)
                         								
 def main():
     xVal = ["A","B","C","D","E"]
@@ -54,19 +59,17 @@ def main():
     possibleArea = [i for i in area if i not in factoryTownData]
     possibleAreaCapacity = 1000
 
-
-    outputList = []
-    for area in possibleArea:
-        temp = {}
-        temp[area] = possibleAreaCapacity
-        tempFactories = temp
-        tempFactories.update(factories)
-        #print(tempFactories)        
-        #sortedFactories = sorted(tempFactories.items(),key=operator.itemgetter(1,0))
-        #print(dict(sortedFactories))
-              
-        #outputList.append(assign(tempFactories,towns,xVal))
-    print(outputList)
+    tempFactories = {'A2': 1000, 'A5': 1000, 'C3': 1500, 'A1': 500, 'E2': 1000}
+    print(assign(tempFactories,towns,xVal))
+#    outputList = []
+#    for area in possibleArea:
+#        temp = {}
+#        temp[area] = possibleAreaCapacity
+#        tempFactories = temp
+#        tempFactories.update(factories)        
+#        print(assign(tempFactories,towns,xVal))     
+#        #outputList.append(assign(tempFactories,towns,xVal))
+#   # print(outputList)
         
 main()        
 
