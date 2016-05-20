@@ -9,7 +9,7 @@ def find_closest(position,allPosition,positionUsed,xVal):
     for value in allPosition:
         if value not in positionUsed:
             positionData.append([value,euclidean_distance(generate_coordinate(position,xVal),generate_coordinate(value,xVal))])
-    sortedPosition = sorted(positionData,key=operator.itemgetter(0))
+    sortedPosition = sorted(positionData,key=operator.itemgetter(0))   
     return sortedPosition[0]
                  
 def euclidean_distance(a,b):
@@ -26,27 +26,29 @@ def generate_area(xVal,yVal):
 
 def assign(factories,towns,xVal):
     assigned = []
-    assigned2 = []
+    townAssigned = []
     for factory in factories:
-        townAssigned = []
         checkVal = False
         while not checkVal:
-            townData = find_closest(factory,towns,townAssigned,xVal)
-            townDataTemp = towns[townData[0]]
-            factoryDataTemp = factories[factory]
-            if factoryDataTemp <= abs(townDataTemp):
+            if len(townAssigned) == len(factories):
+              return (assigned)
+            closestTown = find_closest(factory,towns,townAssigned,xVal)
+            townData = towns[closestTown[0]]
+            factoryData = factories[factory]
+            if factoryData >= abs(townData):
+                townAssigned.append(closestTown[0])
+                factories[factory]+=townData
+                towns[closestTown[0]] = 0
+                assigned.append([factory,closestTown[0]])
+            elif factoryData <= abs(townData):
+                towns[closestTown[0]] += factoryData
                 factories[factory] = 0
-                towns[townData[0]] += factoryDataTemp
+                assigned.append([factory,closestTown[0]])
                 checkVal = True
-                assigned2.append([factory,townData[0]])
                 break
-            elif factoryDataTemp >= abs(townDataTemp):
-                townAssigned.append(townData[0])
-                factories[factory] += towns[townData[0]]                
-                towns[townData[0]] = 0
-                assigned.append([factory,townData[0]])
-    return (assigned,assigned2)
-                        								
+    return (assigned)
+                
+
 def main():
     xVal = ["A","B","C","D","E"]
     yVal = [1,2,3,4,5]
@@ -59,17 +61,15 @@ def main():
     possibleArea = [i for i in area if i not in factoryTownData]
     possibleAreaCapacity = 1000
 
-    tempFactories = {'A2': 1000, 'A5': 1000, 'C3': 1500, 'A1': 500, 'E2': 1000}
-    print(assign(tempFactories,towns,xVal))
-#    outputList = []
-#    for area in possibleArea:
-#        temp = {}
-#        temp[area] = possibleAreaCapacity
-#        tempFactories = temp
-#        tempFactories.update(factories)        
-#        print(assign(tempFactories,towns,xVal))     
-#        #outputList.append(assign(tempFactories,towns,xVal))
-#   # print(outputList)
+
+    outputList = []
+    for area in possibleArea:
+        temp = {}
+        temp[area] = possibleAreaCapacity
+        tempFactories = temp
+        tempFactories.update(factories)             
+        outputList.append(assign(tempFactories,towns,xVal))
+    print(outputList)
         
 main()        
 
