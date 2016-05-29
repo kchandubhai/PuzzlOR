@@ -5,14 +5,15 @@ import math
 import operator
 
 def checkVal(alist,blist):
-    return [ val for val in alist if val not in blist]
+    return [val for val in alist if val not in blist]
 
 def euclidean_distance(a,b):
     c = [math.pow(a[i] - b[i],2) for i in range(len(b))]
     return math.sqrt(sum(c))
 
 def find_closest(endpoint,area,startPositionList):
-    distanceList = [[value,euclidean_distance(endpoint,value[0]),euclidean_distance(endpoint,value[1])] for value in area]
+    distanceList = [[value,euclidean_distance(endpoint,value[0]),
+    euclidean_distance(endpoint,value[1])] for value in area]
     distanceList2 =  sorted(distanceList,key=operator.itemgetter(1,2))
     distanceList3 = [val[0] for val in distanceList2]
     outputList = checkVal(distanceList3,startPositionList)
@@ -26,23 +27,30 @@ def main():
     	   [[3,10],[10,7]],[[8,10],[9,8]]]
     
     calcList = []
-    for value in area:        
-       startPosition = value
-       countval = 0
-       startPositionList = []
-       distanceCalc = 0
-       while countval < len(area)-1:
-           distanceCalc += euclidean_distance(startPosition[0],startPosition[1])
-           startPositionList.append(startPosition)
-           nextPosition = find_closest(startPosition[1],area,startPositionList)
-           distanceCalc += euclidean_distance(startPosition[1],nextPosition[0])
-           startPosition = nextPosition
-           countval += 1
-       print(startPositionList)
-       finalDistance = distanceCalc +  euclidean_distance(startPosition[0],startPosition[1])  + euclidean_distance(startPositionList[len(startPositionList)-1][1],startPosition[0]) 
-       calcList.append(round(finalDistance,3))
-       calcList.sort()
-       print(calcList)
+    for value in area:
+        check = False
+        startPosition = value
+        startPositionList = []
+        distanceCalc = 0
+        while not check:
+            if len(startPositionList) == 9:
+                finalDistance = distanceCalc + \
+                euclidean_distance(startPosition[0],startPosition[1]) + \
+                euclidean_distance(startPositionList[len(startPositionList)-1][1],startPosition[0]) 
+                calcList.append(round(finalDistance,3))
+                check = True
+                break
+            else:
+                distanceCalc += euclidean_distance(startPosition[0],startPosition[1])
+                startPositionList.append(startPosition)
+                nextPosition = find_closest(startPosition[1],area,startPositionList)
+                distanceCalc += euclidean_distance(startPosition[1],nextPosition[0])
+                startPosition = nextPosition
+    calcList.sort()
+    print(calcList)
+                
+            
+
 
         
 
