@@ -1,3 +1,4 @@
+#PuzzlOR April 2009 Dance scheduling
 import operator
 
 def validPair(pair,alist):
