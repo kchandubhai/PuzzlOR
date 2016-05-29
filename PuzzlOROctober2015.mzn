@@ -18,20 +18,20 @@ var 1..20: x24;
 var 1..20: x34;
 
 % constraints
-constraint x11 + x12 + x13 + x34 <= 12;
-constraint x31 + x22 + x13 + x34 <= 17;
-constraint x31 + x12 + x23 + x24 <= 14;
-constraint x21 + x22 + x13 + x34 <= 13;
-constraint x11 + x22 + x23 + x14 <= 15;
-constraint x11 + x32 + x23 + x34 <= 11;
-constraint x21 + x32 + x33 + x14 <= 16;
-constraint x21 + x22 + x13 + x24 <= 19;
+constraint x11 + x12 + x13 + x34 = 12;
+constraint x31 + x22 + x13 + x34 = 17;
+constraint x31 + x12 + x23 + x24 = 14;
+constraint x21 + x22 + x13 + x34 = 13;
+constraint x11 + x22 + x23 + x14 = 15;
+constraint x11 + x32 + x23 + x34 = 11;
+constraint x21 + x32 + x33 + x14 = 16;
+constraint x21 + x22 + x13 + x24 = 19;
 constraint x31 + x12 + x33 + x14 <= 18;
 constraint x31 + x32 + x33 + x24 <= 20;
 
 
 % objective function
-solve maximize x11 + x12 + x13 + x14 + x21 + x22 + x23 + x24 + x31 + x32 + x33 + x34;
+solve minimize x11 + x12 + x13 + x14 + x21 + x22 + x23 + x24 + x31 + x32 + x33 + x34;
 
 % output
 output ["fastest speed ",show(x11 + x12 + x13 + x14 + x21 + x22 + x23 + x24 + x31 + x32 + x33 + x34),"\n",
