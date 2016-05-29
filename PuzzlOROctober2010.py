@@ -1,5 +1,4 @@
 # PuzzlOR October 2010 Home Improvement
-
 import math
 import operator
 
