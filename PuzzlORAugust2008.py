@@ -1,7 +1,5 @@
-
 # PuzzlOR August 2008 Markov Prison
 import random
-import math
 
 def generate_random(alist):
 	return random.randint(0,len(alist)-1)
@@ -54,7 +52,7 @@ guardData1 = [("North",2),("South",4),("East",2),("West",2)]
 guardData2 = [("North",4),("South",1),("East",2),("West",3)]
 
 countval = 0
-maxcountval = 10000
+maxcountval = 10
 outcomeList = []
 
 while countval < maxcountval:
@@ -62,8 +60,8 @@ while countval < maxcountval:
     prisonerPositionlist = []
     caught = False
     prisonerPosition = 1
-    guard1Position = random.randint(2,16)
-    guard2Position = random.randint(2,16)
+    guard1Position = 16
+    guard2Position = 16
 
     while not caught:
         if prisonerPosition == guard1Position or prisonerPosition == guard2Position:
