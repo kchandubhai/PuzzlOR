@@ -65,7 +65,7 @@ def main():
     for values in itertools.permutations(areavalues):
         outputList.append(calc_distance(list(values),areainfo))
     outputList.sort()
-    print(outputList)
+    print(outputList[0])
       
 #    calcList = []
 #    for value in area:
