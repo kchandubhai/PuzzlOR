@@ -3,23 +3,23 @@
 import math
 import random
 
-def customerData():  
+def customerData():
     driverData = []
     countVal = 0
-    maxCountVal = 100
+    maxCountVal = 10000
     while countVal < maxCountVal:
         mandateDelivery = 60
-        customerInterArrivalTime = int(math.ceil(random.expovariate(0.1)))
-        customerCount = 0
+        orderInterArrivalTime = 6
+        orderArrival = int(math.ceil(random.expovariate(1/orderInterArrivalTime)))
+        orderCount = 0
         driverCount = 0
-        while customerCount < customerInterArrivalTime:
-            pickupDelivery = int(math.ceil(random.uniform(20,60)))
-            if pickupDelivery <= mandateDelivery:
+        while orderCount < orderArrival:
+            pickupDelivery = math.ceil(random.uniform(20,61))
+            if pickupDelivery < mandateDelivery:
                 driverCount+=1
-            customerCount+=1
+            orderCount+=1
         driverData.append(driverCount)
         countVal+=1
-    print(round(sum(driverData)/maxCountVal,0))
+    print(math.ceil(round(sum(driverData)/maxCountVal,0)))
 
 customerData()
-
