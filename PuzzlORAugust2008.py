@@ -4,12 +4,8 @@ import random
 def generate_random(alist):
 	return random.randint(0,len(alist)-1)
 
-def prisoner_move(position,prison):
-    nextMoves = prison[position]
-    newMove = nextMoves[generate_random(nextMoves)]
-    if newMove == 0:
-        return position
-    return newMove
+def prisoner_move(position,prison,prisonerPositionlist):
+    return max(prison[position])
 
 def guard_move(position,prison,guardData):
     weighted_choices = guardData
@@ -52,31 +48,35 @@ guardData1 = [("North",2),("South",4),("East",2),("West",2)]
 guardData2 = [("North",4),("South",1),("East",2),("West",3)]
 
 countval = 0
-maxcountval = 10
+maxcountval = 100000
 outcomeList = []
 
 while countval < maxcountval:
 
     prisonerPositionlist = []
-    caught = False
+    guard1PositionList = []
+    guard2PositionList = []
+    chaseEnd = False
     prisonerPosition = 1
     guard1Position = 16
     guard2Position = 16
 
-    while not caught:
+    while not chaseEnd:
         if prisonerPosition == guard1Position or prisonerPosition == guard2Position:
             outcomeList.append(["caught"])
-            caught = True
+            chaseEnd = True
         elif prisonerPosition == 16:
             prisonerPositionlist.append(16)
             outcomeList.append(["escaped",prisonerPositionlist])
-            caught = True
+            chaseEnd = True
         else:
             if prisonerPosition not in prisonerPositionlist:
                 prisonerPositionlist.append(prisonerPosition)
-            prisonerPosition = prisoner_move(prisonerPosition,prison)
-            guard1Position = guard_move(guard1Position,prison,guardData1)
-            guard2Position = guard_move(guard2Position,prison,guardData2)
+            prisonerPosition = prisoner_move(prisonerPosition,prison,prisonerPositionlist)
+            if guard1Position not in guard1PositionList:
+                guard1Position = guard_move(guard1Position,prison,guardData1)
+            if guard2Position not in guard2PositionList:
+                guard2Position = guard_move(guard2Position,prison,guardData2)
     countval +=1
 
 escapeRoute = []
@@ -86,5 +86,8 @@ for value in outcomeList:
         escapeRoute.append(value[1])
     elif value[0] == "caught":
         caughtCount += 1
-print(escapeRoute)
+
+print(escapeRoute[0])
 print(caughtCount/len(outcomeList))
+print( 1 -  (caughtCount/len(outcomeList)))
+
