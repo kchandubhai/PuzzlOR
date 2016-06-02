@@ -14,7 +14,7 @@ def customerData():
         orderCount = 0
         driverCount = 0
         while orderCount < orderArrival:
-            pickupDelivery = math.ceil(random.uniform(20,61))
+            pickupDelivery = math.ceil(random.uniform(19,60))
             if pickupDelivery < mandateDelivery:
                 driverCount+=1
             orderCount+=1
