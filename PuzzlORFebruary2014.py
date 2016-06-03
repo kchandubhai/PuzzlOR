@@ -1,7 +1,5 @@
-#PuzzlOR February 2014 Pizza Delivery
 
-import math
-import random
+#PuzzlOR February 2014 Pizza Delivery
 
 import math
 import random
@@ -33,5 +31,5 @@ def customerData():
 
 def calc_val():
     outputList = [customerData() for value in range(10000)]
-    print(calc_avg(outputList))
+    print(calc_avg(outputList) + 1)
 calc_val()
