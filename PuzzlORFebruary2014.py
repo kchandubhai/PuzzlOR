@@ -3,23 +3,35 @@
 import math
 import random
 
+import math
+import random
+
+def calc_avg(alist):
+    return math.ceil(sum(alist)/len(alist))
+
 def customerData():
     driverData = []
     countVal = 0
-    maxCountVal = 10000
+    maxCountVal = 60
+    mandateDelivery = 60
     while countVal < maxCountVal:
-        mandateDelivery = 60
         orderInterArrivalTime = 6
-        orderArrival = int(math.ceil(random.expovariate(1/orderInterArrivalTime)))
+        orderArrival = math.ceil(random.expovariate(1/orderInterArrivalTime))
         orderCount = 0
         driverCount = 0
+        pickupDeliveryList = []
         while orderCount < orderArrival:
             pickupDelivery = math.ceil(random.uniform(19,60))
-            if pickupDelivery < mandateDelivery:
+            pickupDeliveryList.append(pickupDelivery)
+            if calc_avg(pickupDeliveryList) < mandateDelivery:
                 driverCount+=1
             orderCount+=1
         driverData.append(driverCount)
         countVal+=1
-    print(math.ceil(round(sum(driverData)/maxCountVal,0)))
+    return(calc_avg(driverData))
 
-customerData()
+
+def calc_val():
+    outputList = [customerData() for value in range(10000)]
+    print(calc_avg(outputList))
+calc_val()
