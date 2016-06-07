@@ -1,15 +1,20 @@
 #PuzzlOR August 2011 Logical Hospital
 
-
-
 import math
 import random
 
 test = [1, 2, 1]
 
 def calc_time(patientData,station):
+    time_data_list = []
     for patient in patientData:
-        c
+        if patient < station:
+            time_data_list.append(random.normalvariate(21,4))
+        else:
+            countval = 0
+            maxval = patient
+            while countval < maxval:
+
 
 print(calc_time(test))
 
