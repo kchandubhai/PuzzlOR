@@ -3,24 +3,35 @@
 import math
 import random
 
-test = [1, 2, 1]
+def calc_avg(alist):
+    if len(alist) == 0:
+        return 0
+    return sum(alist)/len(alist)
 
 def calc_time(patientData,station):
-    time_data_list = []
+    time_data = []    
     for patient in patientData:
-        if patient < station:
-            time_data_list.append(random.normalvariate(21,4))
+        time_data_list = []
+        if patient == 0:
+            pass
         else:
-            countval = 0
             maxval = patient
-            while countval < maxval:
+            while maxval > 0:
+                if maxval == 1:
+                    time_data_list.append(random.normalvariate(21,4))
+                    break
+                else:
+                    time_data_list.extend([random.normalvariate(21,4),random.normalvariate(21,4)])
+                    maxval-=2
+        time_data.append(time_data_list)
+    
+    avg_time = [calc_avg(value) for value in time_data]
+    return (avg_time)
 
-
-print(calc_time(test))
 
 def main():
     count = 0
-    maxcount = 10000
+    maxcount = 1
     timelist = []
     while count < maxcount:
         #Patient Arrival
@@ -49,7 +60,8 @@ def main():
         #print(calc_time(patientER,station))
         timelist.append(calc_time(patientER,station))
         count+=1
-
+    print(timelist)
+    
 
 
 if __name__ == '__main__':
