@@ -1,5 +1,4 @@
 # PuzzlOR June 2013 Self Driving Cars
-# 64.347
 
 import math
 import operator
