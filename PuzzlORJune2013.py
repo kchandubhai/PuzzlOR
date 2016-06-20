@@ -12,6 +12,7 @@ def euclidean_distance(a,b):
     c = [math.pow(a[i] - b[i],2) for i in range(len(b))]
     return math.sqrt(sum(c))
 
+#insertion heuristics
 def find_closest(endpoint,area,startPositionList):
     distanceList = [[value,euclidean_distance(endpoint,value[0]),
     euclidean_distance(endpoint,value[1])] for value in area]
