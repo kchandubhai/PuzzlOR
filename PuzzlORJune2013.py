@@ -11,7 +11,7 @@ def euclidean_distance(a,b):
     c = [math.pow(a[i] - b[i],2) for i in range(len(b))]
     return math.sqrt(sum(c))
 
-#insertion heuristics
+#insertion heuristics (closest route)
 def find_closest(endpoint,area,startPositionList):
     distanceList = [[value,euclidean_distance(endpoint,value[0]),
     euclidean_distance(endpoint,value[1])] for value in area]
@@ -67,28 +67,6 @@ def main():
     outputList.sort()
     print(outputList[0])
       
-#    calcList = []
-#    for value in area:
-#        check = False
-#        startPosition = value
-#        startPositionList = []
-#        distanceCalc = 0
-#        while not check:
-#            if len(startPositionList) == 9:
-#                finalDistance = distanceCalc + \
-#                euclidean_distance(startPosition[0],startPosition[1]) + \
-#                euclidean_distance(startPositionList[len(startPositionList)-1][1],startPosition[0]) 
-#                calcList.append(round(finalDistance,3))
-#                check = True
-#                break
-#            else:
-#                distanceCalc += euclidean_distance(startPosition[0],startPosition[1])
-#                startPositionList.append(startPosition)
-#                nextPosition = find_closest(startPosition[1],area,startPositionList)
-#                distanceCalc += euclidean_distance(startPosition[1],nextPosition[0])
-#                startPosition = nextPosition
-#    calcList.sort()
-    #print(calcList)
-    
-    
-main()
+
+if "__name__" == "__main__": 
+    main()
