@@ -26,12 +26,12 @@ def calc_distance(alist,areainfo):
     count = 0
     distance = 0
     while not checkVal:
-        if count == 9:
+        if count == len(alist)-1:
             output = areainfo[alist[count]]
             distance+=euclidean_distance(output[0],output[1])
             checkVal = True
             break
-        elif count > 0 and count < 9:
+        elif count > 0 and count < len(alist)-1:
             output = areainfo[alist[count]]
             output2 = areainfo[alist[count-1]]
             distance += euclidean_distance(output[0],output[1]) + euclidean_distance(output2[1],output[0])
