@@ -22,7 +22,7 @@ def main():
         print ("B")
     else:
         print ("C")
-    print("=================")
+    ##print("=================")
 main()
 
 
@@ -49,4 +49,4 @@ def validate():
             print("C")
     
 
-validate()
+#validate()
