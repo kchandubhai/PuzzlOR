@@ -1,39 +1,58 @@
 # PuzzlOR Matchup August 2016
 
+import itertools
+
+manList = range(1,11)
+womanList =range(1,11)
 
 #Person    Politics    Hobby    Living Preference    Social
-ManInfo = {
-"Man1":["Liberal","Running","Rural","Introverted"],
-"Man2":["Liberal","Chess","Rural","Outgoing"],
-"Man3":["Conservative","Running","Urban","Introverted"],
-"Man4":["Liberal","Running","Rural","Introverted"],
-"Man5":["Conservative","Running","Rural","Introverted"],
-"Man6":["Conservative","Chess","Rural","Introverted"],
-"Man7":["Conservative","Chess","Urban","Introverted"],
-"Man8":["Liberal","Chess","Urban","Introverted"],
-"Man9":["Liberal","Running","Urban","Introverted"],
-"Man10":["Liberal","Running","Urban","Outgoing"]
+manInfo = {
+1:["Liberal","Running","Rural","Introverted"],
+2:["Liberal","Chess","Rural","Outgoing"],
+3:["Conservative","Running","Urban","Introverted"],
+4:["Liberal","Running","Rural","Introverted"],
+5:["Conservative","Running","Rural","Introverted"],
+6:["Conservative","Chess","Rural","Introverted"],
+7:["Conservative","Chess","Urban","Introverted"],
+8:["Liberal","Chess","Urban","Introverted"],
+9:["Liberal","Running","Urban","Introverted"],
+10:["Liberal","Running","Urban","Outgoing"]
 }
 
-
-
-womenInfo = {
-"Woman1":["Conservative","Chess","Rural","Introverted"],
-"Woman2":["Liberal","Running","Rural","Introverted"],
-"Woman3":["Conservative","Chess","Rural","Outgoing"],
-"Woman4":["Conservative","Running","Urban","Outgoing"],
-"Woman5":["Conservative","Chess","Urban","Outgoing"],
-"Woman6":["Liberal","Running","Urban","Introverted"],
-"Woman7":["Conservative","Chess","Urban","Outgoing"],
-"Woman8":["Conservative","Running","Urban","Outgoing"],
-"Woman9":["Liberal","Chess","Urban","Introverted"],
-"Woman10":["Liberal","Running","Rural","Introverted"]
+womanInfo = {
+1:["Conservative","Chess","Rural","Introverted"],
+2:["Liberal","Running","Rural","Introverted"],
+3:["Conservative","Chess","Rural","Outgoing"],
+4:["Conservative","Running","Urban","Outgoing"],
+5:["Conservative","Chess","Urban","Outgoing"],
+6:["Liberal","Running","Urban","Introverted"],
+7:["Conservative","Chess","Urban","Outgoing"],
+8:["Conservative","Running","Urban","Outgoing"],
+9:["Liberal","Chess","Urban","Introverted"],
+10:["Liberal","Running","Rural","Introverted"]
 }
 
+def getScore(alist,blist):
+    score = 0
+    for value in range(len(alist)):
+        if (alist[value] == blist[value]):
+            score += 1
+    return score
+
+#def createCombination(manList,womanList):
+
+def checkScore(alist)  
 
 def main():
-    print("do something")
+    #scoreValue = getScore(["Conservative","Chess","Rural","Introverted"],
+             ["Liberal","Running","Rural","Introverted"])
+    #print(scoreValue)
+    #print(manInfo[1])
+    #print(manList)
 
-
-if __name__ == __main__:
+   
+if __name__ == "__main__":
     main()
+
+
+
