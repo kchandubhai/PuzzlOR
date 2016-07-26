@@ -1,6 +1,7 @@
 # PuzzlOR Matchup August 2016
 
 import itertools
+import operator
 
 manList = range(1,11)
 womanList =range(1,11)
@@ -39,17 +40,20 @@ def getScore(alist,blist):
             score += 1
     return score
 
-#def createCombination(manList,womanList):
+def createCombination(alist,blist):
+    return list(itertools.product(alist,blist))
 
-def checkScore(alist)  
+def checkScore(alist):
+    scoreData = []
+    for value in alist:
+        scoreData.append([value,getScore(manInfo[value[0]],womanInfo[value[1]])])
+    return scoreData
 
 def main():
-    #scoreValue = getScore(["Conservative","Chess","Rural","Introverted"],
-             ["Liberal","Running","Rural","Introverted"])
-    #print(scoreValue)
-    #print(manInfo[1])
-    #print(manList)
-
+    combinationData = (createCombination(manList,womanList))
+    scoreInfo = checkScore(combinationData)
+    sorted_scoreInfo = sorted(scoreInfo,key = operator.itemgetter(1), reverse = True)
+    highest_match_pair_score = (sorted_scoreInfo[0])
    
 if __name__ == "__main__":
     main()
