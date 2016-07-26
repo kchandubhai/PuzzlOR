@@ -49,11 +49,25 @@ def checkScore(alist):
         scoreData.append([value,getScore(manInfo[value[0]],womanInfo[value[1]])])
     return scoreData
 
+def calculateCombinationScore(alist):
+    manData = []
+    womanData = []
+    score = 0
+    for values in alist:
+        if values[0][0] not in manData and values[0][1] not in womanData:
+            manData.append(values[0][0])
+            womanData.append(values[0][1])
+            score+=values[1]
+    return score
+        
+
 def main():
     combinationData = (createCombination(manList,womanList))
     scoreInfo = checkScore(combinationData)
     sorted_scoreInfo = sorted(scoreInfo,key = operator.itemgetter(1), reverse = True)
-    highest_match_pair_score = (sorted_scoreInfo[0])
+    highestMatchPairScore = (sorted_scoreInfo[0][1])
+    totalMatchPairScore = calculateCombinationScore(sorted_scoreInfo)
+    print(highestMatchPairScore,totalMatchPairScore)
    
 if __name__ == "__main__":
     main()
