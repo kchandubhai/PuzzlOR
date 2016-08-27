@@ -7,7 +7,8 @@ def euclidean_distance(a,b):
     c = [math.pow(a[i] - b[i],2) for i in range(len(a))]
     return math.sqrt(sum(c))
 
-Batch = {'Batch1':[[3, 4, 1], 70],
+Batch = {
+'Batch1':[[3, 4, 1], 70],
 'Batch2':[[1, 4, 3], 95],
 'Batch3':[[2, 2, 4], 45],
 'Batch4':[[2, 1, 5], 20],
@@ -21,7 +22,8 @@ Batch = {'Batch1':[[3, 4, 1], 70],
 'Batch12':[[1, 3, 4], 65],
 'Batch13':[[1, 6, 1], 60],
 'Batch14':[[4, 1, 3], 25],
-'Batch15':[[4, 3, 1], 50]}
+'Batch15':[[4, 3, 1], 50]
+}
 
 Recipe = {"Recipe1":[1,2,5],"Recipe2":[2,4,2],"Recipe3":[3,1,4]}
 
