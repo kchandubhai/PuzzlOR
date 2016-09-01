@@ -12,9 +12,9 @@ def main():
 #    "E2":[[5,2],4],"G3":[[7,3],5],"G6":[[7,6],4],"G8":[[7,8],2],
 #    "H1":[[8,1],2],'H4':[[8,4],1],"I7":[[9,7],1]
 #    }
-    site_location = np.array([[1,8],[2,3],[4,6],[4,10],[5,2],[7,3],[7,6],[7,8],
+    site_location = np.array([[4,6],[1,8],[2,3],[4,10],[5,2],[7,3],[7,6],[7,8],
                               [8,1],[8,4],[9,7]])             
-    site_score = [3,3,0,5,4,5,4,2,2,1,1]
+    site_score = [0,3,3,5,4,5,4,2,2,1,1]
     site_euclidean_distance = (squareform(pdist(site_location,"euclidean")))
     max_path_value = 0
     for path in itertools.permutations([1,2,3,4,5,6,7,8,9,10]):
