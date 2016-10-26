@@ -3,6 +3,7 @@
 import math
 import operator
 import itertools
+import random
 
 def checkVal(alist,blist):
     return [val for val in alist if val not in blist]
@@ -62,11 +63,12 @@ def main():
                 }
     areavalues = ["a","b","c","d","e","f","g","h","i","j"]
     outputList = []
-    for values in itertools.permutations(areavalues):
-        outputList.append(calc_distance(list(values),areainfo))
-    outputList.sort()
-    print(outputList[0])
-      
+    #for values in itertools.permutations(areavalues):
+    #    outputList.append(calc_distance(list(values),areainfo))
+    #outputList.sort()
+    
+    #print(outputList[0])
+         
 
 if __name__ == "__main__": 
     main()
