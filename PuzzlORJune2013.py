@@ -61,12 +61,11 @@ def main():
     	        "i":[[3,10],[10,7]],
                 "j":[[8,10],[9,8]]
                 }
-    areavalues = ["a","b","c","d","e","f","g","h","i","j"]
-    outputList = []
+    #areavalues = ["a","b","c","d","e","f","g","h","i","j"]
+    #outputList = []
     #for values in itertools.permutations(areavalues):
     #    outputList.append(calc_distance(list(values),areainfo))
     #outputList.sort()
-    
     #print(outputList[0])
          
 
