@@ -3,6 +3,8 @@
 import math
 import random
 import timeit.Timer
+import numpy as np
+import scipy as sp
 
 def calc_avg(alist):
     return sum(alist)/len(alist)
@@ -11,7 +13,9 @@ def calc_avg(alist):
 
 
 def main():
-   print("") 
+   deliveryTime = 60
+   
+   
 
 if __name__ == "__main__":
     main()
