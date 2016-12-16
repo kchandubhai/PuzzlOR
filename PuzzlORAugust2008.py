@@ -1,21 +1,28 @@
 # PuzzlOR August 2008 Markov Prison
-
 import random
+from bisect import bisect
+
+def weighted_choice(choices):
+    values, weights = zip(*choices)
+    total = 0
+    cum_weights = []
+    for w in weights:
+        total += w
+        cum_weights.append(total)
+    x = random.random() * total
+    i = bisect(cum_weights, x)
+    return values[i]
 
 def generate_random(alist):
-	return random.randint(0,len(alist)-1)
+    return random.randint(0,len(alist)-1)
 
 def prisoner_move(position,prison):
     tempList = prison[position]
     tempValue = generate_random(tempList)
-    ##if tempList[tempValue] == 0:
-    ##    return position
     return tempList[tempValue]
 
 def guard_move(position,prison,guardData):
-    weighted_choices = guardData
-    population = [val for val, cnt in weighted_choices for i in range(cnt)]
-    output = random.choice(population)
+    output = weighted_choice(guardData)
     if output == "North":
         tempval = 0
     elif output == "South":
@@ -29,6 +36,7 @@ def guard_move(position,prison,guardData):
     if nextMove == 0:
         nextMove = position
     return nextMove
+
 
 def main():
     prison = {
@@ -50,7 +58,7 @@ def main():
     16:[12,0,0,15]
     }
     
-    prisonRoute = {
+    prison_route = {
     1:[5,2],
     2:[6,3,1],
     3:[7,4,2],
@@ -69,59 +77,44 @@ def main():
     16:[12,15]
     }
     
-    guardData1 = [("North",2),("South",4),("East",2),("West",2)]
-    guardData2 = [("North",4),("South",1),("East",2),("West",3)]
-    
+    guard1_data = [("North",20),("South",40),("East",20),("West",20)]
+    guard2_data = [("North",40),("South",10),("East",20),("West",30)]
+    #print(weighted_choice(guard1_data))
     countval = 0
-    maxcountval = 10
-    outcomeList = []
-    escapeRoute = []
+    maxcountval = 10000
+    outcome = []
+    escape_Route = []
     while countval < maxcountval:
-        prisonerPositionlist = []
-        guard1PositionList = []
-        guard2PositionList = []
-        chaseEnd = False
-        prisonerPosition = 1
-        guard1Position = 16
-        guard2Position = 16
-        while not chaseEnd:
-            if prisonerPosition == guard1Position or prisonerPosition == guard2Position:
-                outcomeList.append("caught")
-                chaseEnd = True
+        prisoner_Position = []
+        guard1_Position = []
+        guard2_Position = []
+        chase_End = False
+        prisoner = 1
+        guard1 = 16
+        guard2 = 16
+        while not chase_End:
+            if prisoner == guard1 or prisoner == guard2:
+                outcome.append("caught")
+                chase_End = True
                 break
-            elif prisonerPosition == 16:
-                prisonerPositionlist.append(16)
-                escapeRoute.append(prisonerPositionlist)
-                outcomeList.append("escaped")
-                chaseEnd = True
+            elif prisoner == 16:
+                prisoner_Position.append(16)
+                escape_Route.append(prisoner_Position)
+                outcome.append("escaped")
+                chase_End = True
                 break
             else:
-                if prisonerPosition not in prisonerPositionlist:
-                    prisonerPositionlist.append(prisonerPosition)
-                    prisonerPosition = prisoner_move(prisonerPosition,prisonRoute)
-                if guard1Position not in guard1PositionList:
-                    guard1Position = guard_move(guard1Position,prison,guardData1)
-                if guard2Position not in guard2PositionList:
-                    guard2Position = guard_move(guard2Position,prison,guardData2)
+                if prisoner not in prisoner_Position:
+                    prisoner_Position.append(prisoner)
+                    prisoner = prisoner_move(prisoner,prison_route)
+                if guard1 not in guard1_Position:
+                    guard1 = guard_move(guard1,prison,guard1_data)
+                if guard2 not in guard2_Position:
+                    guard2 = guard_move(guard2,prison,guard2_data)
         countval +=1
-    print(len([value for value in outcomeList if value == "caught"]))
-    print(len([value for value in outcomeList if value == "escaped"]))
-    print(escapeRoute[0:5])
-
-
+    print(len([value for value in outcome if value == "caught"]))
+    print(len([value for value in outcome if value == "escaped"]))
+    print(escape_Route[0:5])
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
