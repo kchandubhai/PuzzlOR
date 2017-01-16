@@ -23,7 +23,8 @@ def main():
     distance = [get_distance(sub,ships) for sub in subs]
     cost = np.array(distance)
     row_ind, col_ind = linear_sum_assignment(cost)
-    #print(row_ind,col_ind)
+    print(row_ind)
+    print(col_ind)
     print(cost[row_ind, col_ind].sum())
 
 

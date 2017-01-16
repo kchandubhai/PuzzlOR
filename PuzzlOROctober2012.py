@@ -20,8 +20,8 @@ def prob_success(insurance, fertilizer):
 def expected_value(crop, insurance=0, fertilizer=0):
     """ Return expected value given success or failure. """
     p_success = prob_success(insurance, fertilizer)
-    costs = insurance * crop['insurance_cost'] + fertilizer * crop['fertilizer_cost']
-    profits = crop['profit'] * p_success + crop['loss'] * (1 - p_success)
+    costs = (insurance * crop['insurance_cost']) + (fertilizer * crop['fertilizer_cost'])
+    profits = (crop['profit'] * p_success) + (crop['loss'] * (1 - p_success))
     return profits - costs
 
 
