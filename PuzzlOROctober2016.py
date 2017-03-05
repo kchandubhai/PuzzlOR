@@ -54,11 +54,6 @@ def main():
 		'firewood':["B10","E1","I4"]
 		}
 
-		#print(manhattan_distance([9,9],[9,4]))
-		#print(generate_coordinate("I9",xVal))
-		#print(calculate_distance("I9",items,xVal))
-		#print(distance_info)
-
 		distance_info = [calculate_distance(place,items,xVal) for place in places]
 		sorted_a = sorted(distance_info,key=operator.itemgetter(1))
 		print(sorted_a[0])
